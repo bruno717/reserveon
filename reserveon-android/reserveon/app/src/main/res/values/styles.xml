@@ -5,11 +5,30 @@
         <!-- Customize your theme here. -->
         <item name="colorPrimary">@color/primary</item>
         <item name="colorPrimaryDark">@color/black</item>
-        <item name="colorAccent">@color/red</item>
+        <item name="colorAccent">@color/white</item>
         <item name="colorControlNormal">@color/white</item>
 
         <item name="windowActionModeOverlay">true</item>
         <item name="android:actionModeBackground">@color/primary</item>
+    </style>
+
+    <style name="ReserveonEditTextTheme" parent="@style/Theme.AppCompat">
+        <item name="android:textColorHint">@color/gray</item>
+        <item name="colorAccent">@color/gray</item>
+        <item name="colorControlNormal">@android:color/white</item>
+        <item name="colorControlActivated">@android:color/white</item>
+        <item name="android:textColorHighlight">@color/gray</item>
+        <item name="android:textColorLink">@color/gray</item>
+    </style>
+
+    <style name="ReserveonEditTextStyle" parent="@style/TextAppearance.AppCompat">
+        <item name="android:textColorHint">@color/gray</item>
+        <item name="colorAccent">@color/gray</item>
+        <item name="colorControlNormal">@android:color/white</item>
+        <item name="colorControlActivated">@android:color/white</item>
+        <item name="android:textColorHighlight">@color/gray</item>
+        <item name="android:textColorLink">@color/gray</item>
+        <item name="android:textColor">@color/gray</item>
     </style>
 
 </resources>

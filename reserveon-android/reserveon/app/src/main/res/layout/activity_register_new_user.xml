@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:scaleType="centerCrop"
+        android:src="@mipmap/background_splash" />
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/background_transparent" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:gravity="center"
+        android:orientation="vertical"
+        android:padding="16dp">
+
+        <android.support.design.widget.TextInputLayout
+            android:id="@id/activity_register_new_user_textinputlayout_name"
+            style="ReserveonEditTextStyle"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="8dp"
+            android:theme="@style/ReserveonEditTextTheme"
+            app:hintTextAppearance="@android:style/TextAppearance.Small">
+
+            <EditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="@string/activity_register_new_user_edittext_hint_name"
+                android:inputType="text"
+                android:textColor="@android:color/white"
+                android:textSize="14sp" />
+
+        </android.support.design.widget.TextInputLayout>
+
+        <android.support.design.widget.TextInputLayout
+            android:id="@id/activity_register_new_user_textinputlayout_email"
+            style="ReserveonEditTextStyle"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="8dp"
+            android:theme="@style/ReserveonEditTextTheme"
+            app:hintTextAppearance="@android:style/TextAppearance.Small">
+
+            <EditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="@string/activity_register_new_user_edittext_hint_email"
+                android:inputType="textEmailAddress"
+                android:textColor="@android:color/white"
+                android:textSize="14sp" />
+
+        </android.support.design.widget.TextInputLayout>
+
+        <android.support.design.widget.TextInputLayout
+            android:id="@id/activity_register_new_user_textinputlayout_password"
+            style="@style/ReserveonEditTextStyle"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="8dp"
+            android:theme="@style/ReserveonEditTextTheme"
+            app:hintTextAppearance="@android:style/TextAppearance.Small">
+
+            <EditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="@string/activity_register_new_user_edittext_hint_password"
+                android:inputType="textPassword"
+                android:textColor="@android:color/white"
+                android:textSize="14sp" />
+
+        </android.support.design.widget.TextInputLayout>
+
+        <Button
+            android:id="@id/activity_register_new_user_button_register"
+            android:layout_width="200dp"
+            android:layout_height="wrap_content"
+            android:background="@color/primary_transparent"
+            android:text="@string/activity_register_new_user_button_register" />
+
+    </LinearLayout>
+
+</RelativeLayout>
+

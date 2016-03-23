@@ -4,4 +4,10 @@
     <!-- ids default app -->
     <item name="reserveon_toolbar" type="id"/>
 
+    <!-- Activity register new user -->
+    <item name="activity_register_new_user_textinputlayout_name" type="id"/>
+    <item name="activity_register_new_user_textinputlayout_email" type="id"/>
+    <item name="activity_register_new_user_textinputlayout_password" type="id"/>
+    <item name="activity_register_new_user_button_register" type="id"/>
+
 </resources>
