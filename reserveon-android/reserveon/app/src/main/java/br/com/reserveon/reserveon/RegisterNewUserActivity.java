@@ -1,14 +1,16 @@
 package br.com.reserveon.reserveon;
 
+import android.content.Context;
 import android.os.Bundle;
 import android.support.design.widget.TextInputLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.widget.Button;
 
+import com.afollestad.materialdialogs.MaterialDialog;
+
 import br.com.reserveon.reserveon.interfaces.IServiceResponse;
 import br.com.reserveon.reserveon.models.User;
 import br.com.reserveon.reserveon.rest.UserService;
-import br.com.reserveon.reserveon.tasks.UserRegisterTask;
 import butterknife.Bind;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
@@ -33,13 +35,15 @@ public class RegisterNewUserActivity extends AppCompatActivity {
         setContentView(R.layout.activity_register_new_user);
         ButterKnife.bind(this);
 
-        setupTextInputLayout();
     }
 
     private void setupTextInputLayout() {
         mInputName.setErrorEnabled(false);
+        mInputName.setError(null);
         mInputEmail.setErrorEnabled(false);
+        mInputEmail.setError(null);
         mInputPassword.setErrorEnabled(false);
+        mInputPassword.setError(null);
     }
 
     private boolean validateFields() {
@@ -48,11 +52,19 @@ public class RegisterNewUserActivity extends AppCompatActivity {
         boolean isValidEmail = false;
         boolean isValidPassword = false;
 
+        boolean isCaracterUpper = false;
+        boolean isCaracterLower = false;
+        boolean isCaracterNumber = false;
+        boolean isCaracterSpecial = false;
+        boolean isSizeMinDefault = false;
+
         mInputName.setErrorEnabled(false);
         mInputEmail.setErrorEnabled(false);
         mInputPassword.setErrorEnabled(false);
 
         if (mInputName.getEditText() != null && mInputEmail.getEditText() != null && mInputPassword.getEditText() != null) {
+            String password = mInputPassword.getEditText().getText().toString();
+
             if (mInputName.getEditText().getText().length() > 0) {
                 isValidName = true;
             } else {
@@ -67,8 +79,31 @@ public class RegisterNewUserActivity extends AppCompatActivity {
                 mInputEmail.setError(getString(R.string.activity_register_new_user_validation_email_text));
             }
 
-            if (mInputPassword.getEditText().getText().length() > 0) {
-                isValidPassword = true;
+            if (password.length() > 0) {
+
+                if (password.length() > 5) {
+                    isSizeMinDefault = true;
+                }
+
+                for (int i = 0; i < password.length(); i++) {
+                    Character caractere = password.charAt(i);
+
+                    if (Character.isUpperCase(caractere)) {
+                        isCaracterUpper = true;
+                    } else if (Character.isLowerCase(caractere)) {
+                        isCaracterLower = true;
+                    } else if (caractere.toString().matches("[0-9]")) {
+                        isCaracterNumber = true;
+                    } else if (caractere.toString().matches("\\W")) {
+                        isCaracterSpecial = true;
+                    }
+                }
+                isValidPassword = isCaracterUpper && isCaracterLower && isCaracterNumber && isCaracterSpecial && isSizeMinDefault;
+
+                if (!isValidPassword) {
+                    mInputPassword.setErrorEnabled(true);
+                    mInputPassword.setError(getString(R.string.activity_register_new_user_validation_format_default_password_text));
+                }
             } else {
                 mInputPassword.setErrorEnabled(true);
                 mInputPassword.setError(getString(R.string.activity_register_new_user_validation_password_text));
@@ -78,9 +113,24 @@ public class RegisterNewUserActivity extends AppCompatActivity {
         return isValidName && isValidEmail && isValidPassword;
     }
 
+    private MaterialDialog showModalProgress(){
+        return new MaterialDialog.Builder(this)
+                .autoDismiss(false)
+                .cancelable(false)
+                .title(R.string.progress_dialog_title)
+                .content(R.string.activity_register_new_user_progress_dialog_description)
+                .progress(true, 0)
+                .show();
+    }
+
     @OnClick(R.id.activity_register_new_user_button_register)
     public void onClickRegisterUser() {
+
+        setupTextInputLayout();
+
         if (validateFields()) {
+
+            final MaterialDialog materialDialog = showModalProgress();
 
             User user = new User();
             user.setName(mInputName.getEditText().getText().toString());
@@ -88,27 +138,15 @@ public class RegisterNewUserActivity extends AppCompatActivity {
             user.setPassword(mInputPassword.getEditText().getText().toString());
             user.setProfileId(1);
 
-            /*new UserRegisterTask(user, new IServiceResponse<User>() {
+            new UserService().registerUser(user, new IServiceResponse<Void>() {
                 @Override
-                public void onSuccess(User data) {
-
+                public void onSuccess(Void data) {
+                    materialDialog.dismiss();
                 }
 
                 @Override
                 public void onError(String error) {
-
-                }
-            }).execute();*/
-
-            new UserService().registerUser(user, new IServiceResponse<User>() {
-                @Override
-                public void onSuccess(User data) {
-
-                }
-
-                @Override
-                public void onError(String error) {
-
+                    materialDialog.dismiss();
                 }
             });
         }

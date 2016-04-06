@@ -9,22 +9,22 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class User {
 
-    @JsonProperty("Id")
+    //@JsonProperty("Id")
     private Integer id;
 
-    @JsonProperty("Name")
+    //@JsonProperty("Name")
     private String name;
 
-    @JsonProperty("Email")
+    //@JsonProperty("Email")
     private String email;
 
-    @JsonProperty("Password")
+    //@JsonProperty("Password")
     private String password;
 
-    @JsonProperty("ProfileId")
+    //@JsonProperty("ProfileId")
     private Integer profileId;
 
-    @JsonProperty("Profile")
+    //@JsonProperty("Profile")
     private Profile profile;
 
     public Integer getId() {

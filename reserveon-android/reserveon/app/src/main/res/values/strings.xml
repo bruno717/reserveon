@@ -1,5 +1,8 @@
 <resources>
+
+    <!-- strings default -->
     <string name="app_name">reserveon</string>
+    <string name="progress_dialog_title">Aguarde</string>
 
     <!-- Activity register new user -->
     <string name="activity_register_new_user_edittext_hint_name">Nome *</string>
@@ -9,4 +12,7 @@
     <string name="activity_register_new_user_validation_name_text">Insira seu nome</string>
     <string name="activity_register_new_user_validation_email_text">Insira um email válido</string>
     <string name="activity_register_new_user_validation_password_text">Insira uma senha</string>
+    <string name="activity_register_new_user_validation_format_default_password_text">Sua senha deve conter no mínimo 6 caracteres, sendo que uma letra maiúscula, uma minúscula, um número e um caractere especial, exemplo: Aa12!@</string>
+    <string name="activity_register_new_user_progress_dialog_description">Salvando usuário…</string>
+
 </resources>
