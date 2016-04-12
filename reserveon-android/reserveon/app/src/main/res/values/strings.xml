@@ -3,6 +3,10 @@
     <!-- strings default -->
     <string name="app_name">reserveon</string>
     <string name="progress_dialog_title">Aguarde</string>
+    <string name="dialog_positive">OK</string>
+    <string name="dialog_negative">CANCELAR</string>
+    <string name="dialog_without_connection_internet_title">Sem conexão</string>
+    <string name="dialog_without_connection_internet_description">Você não está conectado com a internet para fazer seu cadastro, verifique sua conexão.</string>
 
     <!-- Activity register new user -->
     <string name="activity_register_new_user_edittext_hint_name">Nome *</string>
@@ -14,5 +18,13 @@
     <string name="activity_register_new_user_validation_password_text">Insira uma senha</string>
     <string name="activity_register_new_user_validation_format_default_password_text">Sua senha deve conter no mínimo 6 caracteres, sendo que uma letra maiúscula, uma minúscula, um número e um caractere especial, exemplo: Aa12!@</string>
     <string name="activity_register_new_user_progress_dialog_description">Salvando usuário…</string>
+    <string name="activity_register_new_user_toast_error_register_user">Erro ao salvar seu usuário!</string>
+    <string name="activity_register_new_user_toast_register_user">Usuário salvo com sucesso!</string>
+
+    <!-- Activity login -->
+    <string name="activity_login_edittext_hint_email">Email *</string>
+    <string name="activity_register_login_edittext_hint_password">Senha *</string>
+    <string name="activity_register_login_button_enter">Entrar</string>
+    <string name="activity_register_login_button_register">Cadastrar</string>
 
 </resources>

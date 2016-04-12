@@ -10,4 +10,10 @@
     <item name="activity_register_new_user_textinputlayout_password" type="id"/>
     <item name="activity_register_new_user_button_register" type="id"/>
 
+    <!-- Activity login -->
+    <item name="activity_login_textinputlayout_email" type="id"/>
+    <item name="activity_login_textinputlayout_password" type="id"/>
+    <item name="activity_login_button_enter" type="id"/>
+    <item name="activity_login_button_register" type="id"/>
+
 </resources>

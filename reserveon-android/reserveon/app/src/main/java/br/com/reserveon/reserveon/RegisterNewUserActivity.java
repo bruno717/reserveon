@@ -1,16 +1,18 @@
 package br.com.reserveon.reserveon;
 
-import android.content.Context;
 import android.os.Bundle;
 import android.support.design.widget.TextInputLayout;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Patterns;
 import android.widget.Button;
+import android.widget.Toast;
 
 import com.afollestad.materialdialogs.MaterialDialog;
 
 import br.com.reserveon.reserveon.interfaces.IServiceResponse;
 import br.com.reserveon.reserveon.models.User;
 import br.com.reserveon.reserveon.rest.UserService;
+import br.com.reserveon.reserveon.utils.ConnectionUtils;
 import butterknife.Bind;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
@@ -72,7 +74,7 @@ public class RegisterNewUserActivity extends AppCompatActivity {
                 mInputName.setError(getString(R.string.activity_register_new_user_validation_name_text));
             }
 
-            if (mInputEmail.getEditText().getText().length() > 0) {
+            if (mInputEmail.getEditText().getText().length() > 0 && Patterns.EMAIL_ADDRESS.matcher(mInputEmail.getEditText().getText()).matches()) {
                 isValidEmail = true;
             } else {
                 mInputEmail.setErrorEnabled(true);
@@ -113,7 +115,7 @@ public class RegisterNewUserActivity extends AppCompatActivity {
         return isValidName && isValidEmail && isValidPassword;
     }
 
-    private MaterialDialog showModalProgress(){
+    private MaterialDialog showModalProgress() {
         return new MaterialDialog.Builder(this)
                 .autoDismiss(false)
                 .cancelable(false)
@@ -128,27 +130,39 @@ public class RegisterNewUserActivity extends AppCompatActivity {
 
         setupTextInputLayout();
 
-        if (validateFields()) {
+        if (ConnectionUtils.isConnected(this)) {
+            if (validateFields()) {
 
-            final MaterialDialog materialDialog = showModalProgress();
+                final MaterialDialog materialDialog = showModalProgress();
 
-            User user = new User();
-            user.setName(mInputName.getEditText().getText().toString());
-            user.setEmail(mInputEmail.getEditText().getText().toString());
-            user.setPassword(mInputPassword.getEditText().getText().toString());
-            user.setProfileId(1);
+                User user = new User();
+                user.setName(mInputName.getEditText().getText().toString());
+                user.setEmail(mInputEmail.getEditText().getText().toString());
+                user.setPassword(mInputPassword.getEditText().getText().toString());
+                user.setProfileId(1);
 
-            new UserService().registerUser(user, new IServiceResponse<Void>() {
-                @Override
-                public void onSuccess(Void data) {
-                    materialDialog.dismiss();
-                }
+                new UserService().registerUser(user, new IServiceResponse<Void>() {
+                    @Override
+                    public void onSuccess(Void data) {
+                        materialDialog.dismiss();
+                        Toast.makeText(RegisterNewUserActivity.this, R.string.activity_register_new_user_toast_register_user, Toast.LENGTH_SHORT).show();
+                    }
 
-                @Override
-                public void onError(String error) {
-                    materialDialog.dismiss();
-                }
-            });
+                    @Override
+                    public void onError(String error) {
+                        materialDialog.dismiss();
+                        Toast.makeText(RegisterNewUserActivity.this, R.string.activity_register_new_user_toast_error_register_user, Toast.LENGTH_SHORT).show();
+                    }
+                });
+            }
+        }else{
+            new MaterialDialog.Builder(this)
+                    .autoDismiss(false)
+                    .cancelable(false)
+                    .title(R.string.dialog_without_connection_internet_title)
+                    .content(R.string.dialog_without_connection_internet_description)
+                    .positiveText(R.string.dialog_positive)
+                    .show();
         }
     }
 }

@@ -8,6 +8,15 @@
         <item name="colorAccent">@color/white</item>
         <item name="colorControlNormal">@color/white</item>
 
+        <!-- Custom widgets example: Material dialog -->
+        <item name="md_dark_theme">false</item>
+        <item name="md_title_color">@color/primary</item>
+        <item name="md_positive_color">@color/primary</item>
+        <item name="md_negative_color">@color/gray</item>
+        <item name="md_widget_color">@color/primary</item>
+
+
+        <!-- Actionmode put on action bar -->
         <item name="windowActionModeOverlay">true</item>
         <item name="android:actionModeBackground">@color/primary</item>
     </style>

@@ -2,36 +2,46 @@ package br.com.reserveon.reserveon.models;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import com.orm.SugarRecord;
 
 /**
  * Created by Bruno on 17/03/2016.
  */
 @JsonIgnoreProperties(ignoreUnknown = true)
-public class User {
+public class User extends SugarRecord {
 
-    //@JsonProperty("Id")
-    private Integer id;
+    private Long id;
 
-    //@JsonProperty("Name")
     private String name;
 
-    //@JsonProperty("Email")
     private String email;
 
-    //@JsonProperty("Password")
     private String password;
 
-    //@JsonProperty("ProfileId")
     private Integer profileId;
 
-    //@JsonProperty("Profile")
     private Profile profile;
 
-    public Integer getId() {
+    @JsonProperty("access_token")
+    private String accessToken;
+
+    @JsonProperty("token_type")
+    private String tokenType;
+
+    @JsonProperty("expires_in")
+    private String expiresIn;
+
+    @JsonProperty(".issued")
+    private String issued;
+
+    @JsonProperty(".expires")
+    private String expires;
+
+    public Long getId() {
         return id;
     }
 
-    public void setId(Integer id) {
+    public void setId(Long id) {
         this.id = id;
     }
 
@@ -73,5 +83,45 @@ public class User {
 
     public void setProfile(Profile profile) {
         this.profile = profile;
+    }
+
+    public String getAccessToken() {
+        return accessToken;
+    }
+
+    public void setAccessToken(String accessToken) {
+        this.accessToken = accessToken;
+    }
+
+    public String getTokenType() {
+        return tokenType;
+    }
+
+    public void setTokenType(String tokenType) {
+        this.tokenType = tokenType;
+    }
+
+    public String getExpiresIn() {
+        return expiresIn;
+    }
+
+    public void setExpiresIn(String expiresIn) {
+        this.expiresIn = expiresIn;
+    }
+
+    public String getIssued() {
+        return issued;
+    }
+
+    public void setIssued(String issued) {
+        this.issued = issued;
+    }
+
+    public String getExpires() {
+        return expires;
+    }
+
+    public void setExpires(String expires) {
+        this.expires = expires;
     }
 }
