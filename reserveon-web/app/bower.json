@@ -1,0 +1,22 @@
+{
+  "name": "reserveon",
+  "description": "ReserveOn Web",
+  "main": "index.html",
+  "keywords": [
+    "restaurante",
+    "reservas",
+    "reserveon"
+  ],
+  "authors": [
+    "Lucas Silva"
+  ],
+  "license": "MIT",
+  "homepage": "",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ]
+}

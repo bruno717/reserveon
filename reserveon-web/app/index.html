@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="app">
+
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+
+	<title>Ristorante Con Fusion</title>    
+
+	<!-- build:css styles/main.css -->
+	<link href="bower_components/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
+	<link href="bower_components/bootstrap/dist/css/bootstrap-theme.min.css" rel="stylesheet">
+	<link href="bower_components/font-awesome/css/font-awesome.min.css" rel="stylesheet">
+	<link href="assets/styles/bootstrap-social.css" rel="stylesheet">
+	<link href="assets/styles/mystyles.css" rel="stylesheet">
+	<!-- endbuild -->
+
+</head>
+
+<body ng-controller="AppController">
+	<header>
+		<nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+			<div class="container">
+				<div class="navbar-header">
+					<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar">
+						<span class="sr-only"></span>
+						<span class="icon-bar"></span>
+						<span class="icon-bar"></span>
+						<span class="icon-bar"></span>
+					</button>
+				</div>
+				<div id="navbar" class="navbar-collapse collapse">
+
+					<ul class="nav navbar-left nav-pills">
+						<li>
+							<a href="#/"><span class="glyphicon glyphicon-home" aria-hidden="true"></span> Home</a>
+						</li>
+						<li>
+							<a href="#/menu"><span class="glyphicon glyphicon-list-alt" aria-hidden="true"></span> Menu</a>
+						</li>
+						<li>
+							<a href="#/aboutus"><span class="glyphicon glyphicon-info-sign" aria-hidden="true"></span> Sobre</a>
+						</li>
+						<li>
+							<a href="#/contactus"><i class="fa fa-envelope-o"></i> Contato</a>
+						</li>
+					</ul>
+
+					<ul class="nav navbar-right nav-pills">
+						<li role="presentation">
+							<a href="#/login">Entrar</a>
+						</li>
+						<li role="presentation">
+							<a href="#/signup">Cadastrar</a>
+						</li>
+					</ul>
+
+				</div>
+			</div>
+		</nav>         
+	</header>
+		
+	<div class="jumbotron">
+
+	<ng-view></ng-view>
+	
+	</div>
+
+	<footer class="row-footer">
+		<div class="container">
+			<div class="row">             
+				<div class="col-xs-5 col-xs-offset-1 col-sm-2 col-sm-offset-1">
+					<h4>Mapa do Site</h4>
+					<ul class="list-unstyled">
+						<li><a href="#">Home</a></li>
+						<li><a href="#">Menu</a></li>
+						<li><a href="#">Sobre</a></li>
+						<li><a href="#">Contato</a></li>
+					</ul>
+				</div>
+				<div class="col-xs-6 col-sm-5 row" align="center">
+					<h5></h5>
+					<address>
+						Rua A, 111 - São Paulo - SP<br>
+						<i class="fa fa-phone"></i> +55 11 1234 5678<br>
+						<i class="fa fa-envelope"></i><a href="mailto:lucas.silva@reserveon.com.br"> lucas.silva@reserveon.com.br</a>
+					<address>
+					<p style="padding:10px;"></p>
+					<p align=center>© Copyright 2016 ReserveON</p>
+				</div>
+				<div class="col-xs-12 col-sm-4">
+					<div class="nav navbar-nav" style="padding: 40px 10px;">
+						<a class="btn btn-social-icon btn-google-plus" href="http://google.com/+"><i class="fa fa-google-plus"></i></a>
+						<a class="btn btn-social-icon btn-facebook" href="http://www.facebook.com/profile.php?id="><i class="fa fa-facebook"></i></a>
+						<a class="btn btn-social-icon btn-linkedin" href="http://www.linkedin.com/in/"><i class="fa fa-linkedin"></i></a>
+						<a class="btn btn-social-icon btn-twitter" href="http://twitter.com/"><i class="fa fa-twitter"></i></a>
+						<a class="btn btn-social-icon btn-youtube" href="http://youtube.com/"><i class="fa fa-youtube"></i></a>
+						<a class="btn btn-social-icon" href="mailto:"><i class="fa fa-envelope-o"></i></a>
+					</div>
+				</div>
+				<div class="col-xs-12">
+				</div>
+			</div>
+		</div>
+	</footer>
+
+	<!-- build:js scripts/main.js -->
+	<script src="bower_components/angular/angular.min.js"></script>
+	<script src="bower_components/angular-route/angular-route.js"></script>
+	<script src="app.modules.js"></script>
+	<script src="components/register/register-controller.js"></script>
+	<script src="components/login/login-controller.js"></script>
+	<!-- endbuild -->
+
+</body>
+
+</html>
