@@ -23,8 +23,11 @@
 
     <!-- Activity login -->
     <string name="activity_login_edittext_hint_email">Email *</string>
-    <string name="activity_register_login_edittext_hint_password">Senha *</string>
-    <string name="activity_register_login_button_enter">Entrar</string>
-    <string name="activity_register_login_button_register">Cadastrar</string>
+    <string name="activity_login_edittext_hint_password">Senha *</string>
+    <string name="activity_login_button_enter">Entrar</string>
+    <string name="activity_login_button_register">Cadastrar</string>
+    <string name="activity_login_dialog_message_error_auth_title">Erro ao logar.</string>
+    <string name="activity_login_dialog_message_error_auth_description">Não foi possível fazer o login, verifique seu email e senha e tente novamente.</string>
+    <string name="activity_login_dialog_message_auth_user_description">Estamos autenticando o seu usuário.</string>
 
 </resources>

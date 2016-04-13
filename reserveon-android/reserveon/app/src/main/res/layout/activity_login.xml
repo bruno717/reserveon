@@ -54,7 +54,7 @@
             <EditText
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint="@string/activity_register_login_edittext_hint_password"
+                android:hint="@string/activity_login_edittext_hint_password"
                 android:inputType="textPassword"
                 android:textColor="@android:color/white"
                 android:textSize="14sp" />
@@ -66,7 +66,7 @@
             android:layout_width="200dp"
             android:layout_height="wrap_content"
             android:background="@color/primary_transparent"
-            android:text="@string/activity_register_login_button_enter" />
+            android:text="@string/activity_login_button_enter" />
 
         <Button
             android:id="@id/activity_login_button_register"
@@ -74,7 +74,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="8dp"
             android:background="@color/primary_transparent"
-            android:text="@string/activity_register_login_button_register" />
+            android:text="@string/activity_login_button_register" />
 
     </LinearLayout>
 

@@ -11,6 +11,7 @@ import com.afollestad.materialdialogs.MaterialDialog;
 
 import br.com.reserveon.reserveon.interfaces.IServiceResponse;
 import br.com.reserveon.reserveon.models.User;
+import br.com.reserveon.reserveon.models.managers.ValidateFieldsManager;
 import br.com.reserveon.reserveon.rest.UserService;
 import br.com.reserveon.reserveon.utils.ConnectionUtils;
 import butterknife.Bind;
@@ -36,7 +37,6 @@ public class RegisterNewUserActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_register_new_user);
         ButterKnife.bind(this);
-
     }
 
     private void setupTextInputLayout() {
@@ -53,12 +53,6 @@ public class RegisterNewUserActivity extends AppCompatActivity {
         boolean isValidName = false;
         boolean isValidEmail = false;
         boolean isValidPassword = false;
-
-        boolean isCaracterUpper = false;
-        boolean isCaracterLower = false;
-        boolean isCaracterNumber = false;
-        boolean isCaracterSpecial = false;
-        boolean isSizeMinDefault = false;
 
         mInputName.setErrorEnabled(false);
         mInputEmail.setErrorEnabled(false);
@@ -83,25 +77,7 @@ public class RegisterNewUserActivity extends AppCompatActivity {
 
             if (password.length() > 0) {
 
-                if (password.length() > 5) {
-                    isSizeMinDefault = true;
-                }
-
-                for (int i = 0; i < password.length(); i++) {
-                    Character caractere = password.charAt(i);
-
-                    if (Character.isUpperCase(caractere)) {
-                        isCaracterUpper = true;
-                    } else if (Character.isLowerCase(caractere)) {
-                        isCaracterLower = true;
-                    } else if (caractere.toString().matches("[0-9]")) {
-                        isCaracterNumber = true;
-                    } else if (caractere.toString().matches("\\W")) {
-                        isCaracterSpecial = true;
-                    }
-                }
-                isValidPassword = isCaracterUpper && isCaracterLower && isCaracterNumber && isCaracterSpecial && isSizeMinDefault;
-
+                isValidPassword = ValidateFieldsManager.validatePassword(password);
                 if (!isValidPassword) {
                     mInputPassword.setErrorEnabled(true);
                     mInputPassword.setError(getString(R.string.activity_register_new_user_validation_format_default_password_text));
@@ -155,7 +131,7 @@ public class RegisterNewUserActivity extends AppCompatActivity {
                     }
                 });
             }
-        }else{
+        } else {
             new MaterialDialog.Builder(this)
                     .autoDismiss(false)
                     .cancelable(false)

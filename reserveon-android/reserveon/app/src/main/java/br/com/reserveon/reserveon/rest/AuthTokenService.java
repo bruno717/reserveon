@@ -15,7 +15,9 @@ import retrofit2.converter.jackson.JacksonConverterFactory;
  */
 public class AuthTokenService {
 
-    public void registerUser(String email, String password, final IServiceResponse<User> callback) {
+    private static final String GRANT_TYPE = "password";
+
+    public void authUser(final String email, final String password, final IServiceResponse<User> callback) {
 
         Retrofit retrofit = new Retrofit.Builder()
                 .addConverterFactory(JacksonConverterFactory.create())
@@ -24,13 +26,17 @@ public class AuthTokenService {
 
         IAuthTokenService service = retrofit.create(IAuthTokenService.class);
 
-        Call<User> call = service.getTokenUser("password", "test10@android.com", "123aA!");
+        Call<User> call = service.getTokenUser(GRANT_TYPE, email, password);
 
         call.enqueue(new Callback<User>() {
             @Override
             public void onResponse(Call<User> call, Response<User> response) {
                 if (response.code() == 200) {
-                    callback.onSuccess(response.body());
+                    User user = response.body();
+                    user.setEmail(email);
+                    user.setPassword(password);
+                    user.save();
+                    callback.onSuccess(user);
                 } else {
                     callback.onError(response.errorBody() != null ? response.errorBody().toString() : "Error");
                 }
@@ -41,23 +47,5 @@ public class AuthTokenService {
                 callback.onError(t.getLocalizedMessage());
             }
         });
-
-        /*call.enqueue(new Callback<Void>() {
-            @Override
-            public void onResponse(Call<Void> call, Response<Void> response) {
-
-                if (response.code() == 200) {
-                    callback.onSuccess(response.body());
-                } else {
-                    callback.onError(response.errorBody() != null ? response.errorBody().toString() : "Error");
-                }
-            }
-
-            @Override
-            public void onFailure(Call<Void> call, Throwable t) {
-                Log.e("script", "onFailure: " + t.getLocalizedMessage());
-                callback.onError(t.getLocalizedMessage());
-            }
-        });*/
     }
 }
