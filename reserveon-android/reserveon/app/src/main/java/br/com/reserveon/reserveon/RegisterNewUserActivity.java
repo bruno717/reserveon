@@ -1,5 +1,6 @@
 package br.com.reserveon.reserveon;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.TextInputLayout;
 import android.support.v7.app.AppCompatActivity;
@@ -121,6 +122,8 @@ public class RegisterNewUserActivity extends AppCompatActivity {
                     @Override
                     public void onSuccess(Void data) {
                         materialDialog.dismiss();
+                        startActivity(new Intent(RegisterNewUserActivity.this, MainActivity.class)
+                                .addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK));
                         Toast.makeText(RegisterNewUserActivity.this, R.string.activity_register_new_user_toast_register_user, Toast.LENGTH_SHORT).show();
                     }
 
