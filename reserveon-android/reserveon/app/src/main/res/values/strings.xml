@@ -8,6 +8,9 @@
     <string name="dialog_without_connection_internet_title">Sem conexão</string>
     <string name="dialog_without_connection_internet_description">Você não está conectado com a internet para fazer seu cadastro, verifique sua conexão.</string>
 
+    <!-- Format string -->
+    <string name="format_string_call_with_bearer">%1$s %2$s</string>
+
     <!-- Activity register new user -->
     <string name="activity_register_new_user_edittext_hint_name">Nome *</string>
     <string name="activity_register_new_user_edittext_hint_email">Email *</string>
@@ -28,6 +31,7 @@
     <string name="activity_login_button_register">Cadastrar</string>
     <string name="activity_login_dialog_message_error_auth_title">Erro ao logar.</string>
     <string name="activity_login_dialog_message_error_auth_description">Não foi possível fazer o login, verifique seu email e senha e tente novamente.</string>
-    <string name="activity_login_dialog_message_auth_user_description">Estamos autenticando o seu usuário.</string>
+    <string name="activity_login_dialog_message_auth_user_description_authenticating">Autenticando usuário…</string>
+    <string name="activity_login_dialog_message_auth_user_description_load_info">Carregando informações…</string>
 
 </resources>

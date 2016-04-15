@@ -10,16 +10,22 @@ import com.orm.SugarRecord;
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class User extends SugarRecord {
 
+    @JsonProperty("Id")
     private Long id;
 
+    @JsonProperty("Name")
     private String name;
 
+    @JsonProperty("Email")
     private String email;
 
+    @JsonProperty("Password")
     private String password;
 
+    @JsonProperty("ProfileId")
     private Integer profileId;
 
+    @JsonProperty("Profile")
     private Profile profile;
 
     @JsonProperty("access_token")
@@ -123,5 +129,15 @@ public class User extends SugarRecord {
 
     public void setExpires(String expires) {
         this.expires = expires;
+    }
+
+    public void save(User user) {
+        this.name = user.getName();
+        this.email = user.getEmail();
+        this.password = user.getPassword();
+        this.profile = user.getProfile();
+        this.id = user.getId();
+        this.profile.save();
+        this.save();
     }
 }

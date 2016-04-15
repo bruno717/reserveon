@@ -11,9 +11,9 @@ import com.afollestad.materialdialogs.MaterialDialog;
 
 import br.com.reserveon.reserveon.interfaces.IServiceResponse;
 import br.com.reserveon.reserveon.models.User;
-import br.com.reserveon.reserveon.models.managers.AuthManager;
 import br.com.reserveon.reserveon.models.managers.ValidateFieldsManager;
 import br.com.reserveon.reserveon.rest.AuthTokenService;
+import br.com.reserveon.reserveon.rest.UserService;
 import br.com.reserveon.reserveon.utils.ConnectionUtils;
 import butterknife.Bind;
 import butterknife.ButterKnife;
@@ -28,6 +28,7 @@ public class LoginActivity extends AppCompatActivity {
     TextInputLayout mInputEmail;
     @Bind(R.id.activity_login_textinputlayout_password)
     TextInputLayout mInputPassword;
+    private MaterialDialog mMaterialDialog;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -80,7 +81,7 @@ public class LoginActivity extends AppCompatActivity {
         if (ConnectionUtils.isConnected(this)) {
             if (validateFields()) {
 
-                final MaterialDialog materialDialog = showModalProgress();
+                mMaterialDialog = showModalProgress();
 
                 String email = mInputEmail.getEditText() != null ? mInputEmail.getEditText().getText().toString() : "";
                 String password = mInputPassword.getEditText() != null ? mInputPassword.getEditText().getText().toString() : "";
@@ -88,13 +89,13 @@ public class LoginActivity extends AppCompatActivity {
                 new AuthTokenService().authUser(email, password, new IServiceResponse<User>() {
                     @Override
                     public void onSuccess(User user) {
-                        materialDialog.dismiss();
-                        showMainActivity();
+                        mMaterialDialog.setContent(R.string.activity_login_dialog_message_auth_user_description_load_info);
+                        requestGetUserAuth(user.getAccessToken());
                     }
 
                     @Override
                     public void onError(String error) {
-                        materialDialog.dismiss();
+                        mMaterialDialog.dismiss();
                         new MaterialDialog.Builder(LoginActivity.this)
                                 .title(R.string.activity_login_dialog_message_error_auth_title)
                                 .content(R.string.activity_login_dialog_message_error_auth_description)
@@ -104,6 +105,28 @@ public class LoginActivity extends AppCompatActivity {
                 });
             }
         }
+    }
+
+    private void requestGetUserAuth(String token) {
+
+        new UserService().getUserAuth(token, new IServiceResponse<User>() {
+            @Override
+            public void onSuccess(User user) {
+                mMaterialDialog.dismiss();
+                showMainActivity();
+            }
+
+            @Override
+            public void onError(String error) {
+                User.deleteAll(User.class);
+                mMaterialDialog.dismiss();
+                new MaterialDialog.Builder(LoginActivity.this)
+                        .title(R.string.activity_login_dialog_message_error_auth_title)
+                        .content(R.string.activity_login_dialog_message_error_auth_description)
+                        .positiveText(R.string.dialog_positive)
+                        .show();
+            }
+        });
     }
 
     private void showMainActivity() {
@@ -116,7 +139,7 @@ public class LoginActivity extends AppCompatActivity {
                 .autoDismiss(false)
                 .cancelable(false)
                 .title(R.string.progress_dialog_title)
-                .content(R.string.activity_login_dialog_message_auth_user_description)
+                .content(R.string.activity_login_dialog_message_auth_user_description_authenticating)
                 .progress(true, 0)
                 .show();
     }

@@ -10,9 +10,11 @@ import android.widget.Toast;
 
 import com.afollestad.materialdialogs.MaterialDialog;
 
+import br.com.reserveon.reserveon.enums.PerfisUser;
 import br.com.reserveon.reserveon.interfaces.IServiceResponse;
 import br.com.reserveon.reserveon.models.User;
 import br.com.reserveon.reserveon.models.managers.ValidateFieldsManager;
+import br.com.reserveon.reserveon.rest.AuthTokenService;
 import br.com.reserveon.reserveon.rest.UserService;
 import br.com.reserveon.reserveon.utils.ConnectionUtils;
 import butterknife.Bind;
@@ -32,6 +34,7 @@ public class RegisterNewUserActivity extends AppCompatActivity {
     TextInputLayout mInputPassword;
     @Bind(R.id.activity_register_new_user_button_register)
     Button mButtonRegister;
+    private MaterialDialog mMaterialDialog;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -110,26 +113,24 @@ public class RegisterNewUserActivity extends AppCompatActivity {
         if (ConnectionUtils.isConnected(this)) {
             if (validateFields()) {
 
-                final MaterialDialog materialDialog = showModalProgress();
+                mMaterialDialog = showModalProgress();
 
-                User user = new User();
+                final User user = new User();
                 user.setName(mInputName.getEditText().getText().toString());
                 user.setEmail(mInputEmail.getEditText().getText().toString());
                 user.setPassword(mInputPassword.getEditText().getText().toString());
-                user.setProfileId(1);
+                user.setProfileId(PerfisUser.USER_CLIENT.getPerfilCod());
 
                 new UserService().registerUser(user, new IServiceResponse<Void>() {
                     @Override
                     public void onSuccess(Void data) {
-                        materialDialog.dismiss();
-                        startActivity(new Intent(RegisterNewUserActivity.this, MainActivity.class)
-                                .addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK));
-                        Toast.makeText(RegisterNewUserActivity.this, R.string.activity_register_new_user_toast_register_user, Toast.LENGTH_SHORT).show();
+                        mMaterialDialog.setContent(R.string.activity_login_dialog_message_auth_user_description_authenticating);
+                        requestAuthUser(user.getEmail(), user.getPassword());
                     }
 
                     @Override
                     public void onError(String error) {
-                        materialDialog.dismiss();
+                        mMaterialDialog.dismiss();
                         Toast.makeText(RegisterNewUserActivity.this, R.string.activity_register_new_user_toast_error_register_user, Toast.LENGTH_SHORT).show();
                     }
                 });
@@ -143,5 +144,51 @@ public class RegisterNewUserActivity extends AppCompatActivity {
                     .positiveText(R.string.dialog_positive)
                     .show();
         }
+    }
+
+    private void requestAuthUser(String email, String password) {
+
+        new AuthTokenService().authUser(email, password, new IServiceResponse<User>() {
+            @Override
+            public void onSuccess(User user) {
+                mMaterialDialog.setContent(R.string.activity_login_dialog_message_auth_user_description_load_info);
+                requestGetUserAuth(user.getAccessToken());
+            }
+
+            @Override
+            public void onError(String error) {
+                mMaterialDialog.dismiss();
+                new MaterialDialog.Builder(RegisterNewUserActivity.this)
+                        .title(R.string.activity_login_dialog_message_error_auth_title)
+                        .content(R.string.activity_login_dialog_message_error_auth_description)
+                        .positiveText(R.string.dialog_positive)
+                        .show();
+            }
+        });
+
+    }
+
+    private void requestGetUserAuth(String token) {
+
+        new UserService().getUserAuth(token, new IServiceResponse<User>() {
+            @Override
+            public void onSuccess(User user) {
+                mMaterialDialog.dismiss();
+                startActivity(new Intent(RegisterNewUserActivity.this, MainActivity.class)
+                        .addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK));
+                Toast.makeText(RegisterNewUserActivity.this, R.string.activity_register_new_user_toast_register_user, Toast.LENGTH_SHORT).show();
+            }
+
+            @Override
+            public void onError(String error) {
+                User.deleteAll(User.class);
+                mMaterialDialog.dismiss();
+                new MaterialDialog.Builder(RegisterNewUserActivity.this)
+                        .title(R.string.activity_login_dialog_message_error_auth_title)
+                        .content(R.string.activity_login_dialog_message_error_auth_description)
+                        .positiveText(R.string.dialog_positive)
+                        .show();
+            }
+        });
     }
 }

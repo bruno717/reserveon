@@ -1,5 +1,7 @@
 package br.com.reserveon.reserveon.rest;
 
+import java.util.List;
+
 import br.com.reserveon.reserveon.configurations.ApplicationConfig;
 import br.com.reserveon.reserveon.interfaces.IServiceResponse;
 import br.com.reserveon.reserveon.models.User;
@@ -36,6 +38,7 @@ public class AuthTokenService {
                     user.setEmail(email);
                     user.setPassword(password);
                     user.save();
+
                     callback.onSuccess(user);
                 } else {
                     callback.onError(response.errorBody() != null ? response.errorBody().toString() : "Error");
