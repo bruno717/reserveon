@@ -7,6 +7,7 @@ import br.com.reserveon.reserveon.database.UserDbHelper;
 import br.com.reserveon.reserveon.interfaces.IServiceResponse;
 import br.com.reserveon.reserveon.models.User;
 import br.com.reserveon.reserveon.rest.calls.IUserService;
+import br.com.reserveon.reserveon.rest.utils.ClientTimeout;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -23,6 +24,7 @@ public class UserService {
         Retrofit retrofit = new Retrofit.Builder()
                 .addConverterFactory(JacksonConverterFactory.create())
                 .baseUrl(ApplicationConfig.BASE_URL)
+                .client(ClientTimeout.getClientTimeout())
                 .build();
 
         IUserService service = retrofit.create(IUserService.class);
@@ -51,6 +53,7 @@ public class UserService {
         Retrofit retrofit = new Retrofit.Builder()
                 .addConverterFactory(JacksonConverterFactory.create())
                 .baseUrl(ApplicationConfig.BASE_URL)
+                .client(ClientTimeout.getClientTimeout())
                 .build();
 
         IUserService service = retrofit.create(IUserService.class);

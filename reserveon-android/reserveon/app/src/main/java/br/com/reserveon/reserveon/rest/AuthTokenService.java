@@ -1,11 +1,10 @@
 package br.com.reserveon.reserveon.rest;
 
-import java.util.List;
-
 import br.com.reserveon.reserveon.configurations.ApplicationConfig;
 import br.com.reserveon.reserveon.interfaces.IServiceResponse;
 import br.com.reserveon.reserveon.models.User;
 import br.com.reserveon.reserveon.rest.calls.IAuthTokenService;
+import br.com.reserveon.reserveon.rest.utils.ClientTimeout;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -24,6 +23,7 @@ public class AuthTokenService {
         Retrofit retrofit = new Retrofit.Builder()
                 .addConverterFactory(JacksonConverterFactory.create())
                 .baseUrl(ApplicationConfig.BASE_URL)
+                .client(ClientTimeout.getClientTimeout())
                 .build();
 
         IAuthTokenService service = retrofit.create(IAuthTokenService.class);
