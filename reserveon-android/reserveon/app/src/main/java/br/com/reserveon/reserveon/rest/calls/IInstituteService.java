@@ -1,5 +1,8 @@
 package br.com.reserveon.reserveon.rest.calls;
 
+import java.util.List;
+
+import br.com.reserveon.reserveon.models.Institute;
 import br.com.reserveon.reserveon.models.User;
 import retrofit2.Call;
 import retrofit2.http.Body;
@@ -9,14 +12,11 @@ import retrofit2.http.Headers;
 import retrofit2.http.POST;
 
 /**
- * Created by Bruno on 20/03/2016.
+ * Created by Bruno on 17/04/2016.
  */
-public interface IUserService {
-    @Headers("Content-Type: application/json")
-    @POST("users")
-    Call<Void> registerUser(@Body User user);
+public interface IInstituteService {
 
     @Headers("Content-Type: application/json")
     @GET("users/signin")
-    Call<User> getUserAuthenticated(@Header("Authorization") String token);
+    Call<List<Institute>> getLastInstitutes(@Header("Authorization") String token);
 }
