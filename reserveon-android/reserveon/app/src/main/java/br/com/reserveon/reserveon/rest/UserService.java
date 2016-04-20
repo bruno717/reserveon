@@ -58,7 +58,7 @@ public class UserService {
 
         IUserService service = retrofit.create(IUserService.class);
 
-        Call<User> call = service.getUserAuthenticated(String.format(Locale.US, ApplicationConfig.FORMAT_STRING_CALL_WITH_BEARER, ApplicationConfig.BEARER_AUTH, token));
+        Call<User> call = service.getUserAuthenticated(String.format(Locale.US,"%s %s", ApplicationConfig.BEARER_AUTH, token));
 
         call.enqueue(new Callback<User>() {
             @Override

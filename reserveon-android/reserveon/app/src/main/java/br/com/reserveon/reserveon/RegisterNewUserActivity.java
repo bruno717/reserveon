@@ -176,7 +176,6 @@ public class RegisterNewUserActivity extends AppCompatActivity {
                 mMaterialDialog.dismiss();
                 startActivity(new Intent(RegisterNewUserActivity.this, MainActivity.class)
                         .addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK));
-                Toast.makeText(RegisterNewUserActivity.this, R.string.activity_register_new_user_toast_register_user, Toast.LENGTH_SHORT).show();
             }
 
             @Override

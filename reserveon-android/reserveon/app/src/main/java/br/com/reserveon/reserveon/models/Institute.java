@@ -24,6 +24,9 @@ public class Institute {
     @JsonProperty("Image")
     private String image;
 
+    @JsonProperty("Expedient")
+    private String expedient;
+
     public Long getId() {
         return id;
     }
@@ -62,5 +65,13 @@ public class Institute {
 
     public void setImage(String image) {
         this.image = image;
+    }
+
+    public String getExpedient() {
+        return expedient;
+    }
+
+    public void setExpedient(String expedient) {
+        this.expedient = expedient;
     }
 }

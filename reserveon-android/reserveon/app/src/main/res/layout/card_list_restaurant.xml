@@ -26,6 +26,7 @@
             android:layout_height="220dp">
 
             <ImageView
+                android:id="@id/card_list_restaurant_imageview_image"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:scaleType="centerCrop"
@@ -37,6 +38,7 @@
                 android:background="@color/card_list_background_transparent" />
 
             <TextView
+                android:id="@id/card_list_restaurant_textview_name"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_alignParentBottom="true"
@@ -64,10 +66,11 @@
                 android:textColor="@color/simple_text" />
 
             <TextView
+                android:id="@id/card_list_restaurant_textview_expedient"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Seg à Sex 10h às 22h - Sáb "
-                android:textColor="@color/black"/>
+                android:textColor="@color/black" />
 
             <LinearLayout
                 android:layout_width="match_parent"

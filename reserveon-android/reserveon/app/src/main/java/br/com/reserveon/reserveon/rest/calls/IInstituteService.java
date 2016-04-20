@@ -17,6 +17,6 @@ import retrofit2.http.POST;
 public interface IInstituteService {
 
     @Headers("Content-Type: application/json")
-    @GET("users/signin")
+    @GET("institute/recents")
     Call<List<Institute>> getLastInstitutes(@Header("Authorization") String token);
 }
