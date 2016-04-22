@@ -34,4 +34,7 @@
     <string name="activity_login_dialog_message_auth_user_description_authenticating">Autenticando usuário…</string>
     <string name="activity_login_dialog_message_auth_user_description_load_info">Carregando informações…</string>
 
+    <!-- Fragment restaurants -->
+    <string name="frag_restaurants_progress_loading_list_restaurants">Carregando restaurantes…</string>
+
 </resources>

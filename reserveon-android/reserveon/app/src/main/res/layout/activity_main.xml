@@ -8,8 +8,8 @@
     <ImageView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:src="@mipmap/background_splash"
-        android:scaleType="centerCrop"/>
+        android:scaleType="centerCrop"
+        android:src="@mipmap/background_splash" />
 
     <FrameLayout
         android:layout_width="match_parent"
@@ -25,11 +25,10 @@
         android:minHeight="?attr/actionBarSize"
         app:popupTheme="@style/ThemeOverlay.AppCompat.Light" />
 
-    <android.support.v7.widget.RecyclerView
-        android:id="@id/reserveon_recyclerview"
+    <FrameLayout
+        android:id="@id/reserveon_container"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_below="@id/reserveon_toolbar"
-        android:clipToPadding="false" />
+        android:layout_below="@id/reserveon_toolbar"/>
 
 </RelativeLayout>
