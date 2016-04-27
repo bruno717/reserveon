@@ -41,7 +41,7 @@ public class CardListRestaurantAdapter extends RecyclerView.Adapter<CardListRest
     public void onBindViewHolder(ViewHolder holder, int position) {
 
         holder.textViewName.setText(mInstitutes.get(position).getName());
-        holder.textViewExpedient.setText(mInstitutes.get(position).getExpedient());
+        //holder.textViewExpedient.setText(mInstitutes.get(position).getExpedient());
 
         Glide.with(holder.itemView.getContext())
                 .load(mInstitutes.get(position).getImage())
@@ -57,8 +57,8 @@ public class CardListRestaurantAdapter extends RecyclerView.Adapter<CardListRest
 
         @Bind(R.id.card_list_restaurant_textview_name)
         TextView textViewName;
-        @Bind(R.id.card_list_restaurant_textview_expedient)
-        TextView textViewExpedient;
+        /*@Bind(R.id.card_list_restaurant_textview_expedient)
+        TextView textViewExpedient;*/
         @Bind(R.id.card_list_restaurant_imageview_image)
         ImageView imageViewImage;
 
