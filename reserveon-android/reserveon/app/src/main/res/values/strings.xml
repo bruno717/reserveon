@@ -1,7 +1,7 @@
 <resources>
 
     <!-- strings default -->
-    <string name="app_name">reserveon</string>
+    <string name="app_name">ReserveOn</string>
     <string name="progress_dialog_title">Aguarde</string>
     <string name="dialog_positive">OK</string>
     <string name="dialog_negative">CANCELAR</string>
@@ -36,5 +36,6 @@
 
     <!-- Fragment restaurants -->
     <string name="frag_restaurants_progress_loading_list_restaurants">Carregando restaurantes…</string>
+    <string name="frag_restaurants_hint_search">Buscar restaurantes</string>
 
 </resources>

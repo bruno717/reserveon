@@ -1,11 +1,18 @@
 package br.com.reserveon.reserveon.fragments;
 
+import android.app.SearchManager;
+import android.content.Context;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
+import android.support.v4.view.MenuItemCompat;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.support.v7.widget.SearchView;
 import android.view.LayoutInflater;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 
@@ -36,6 +43,7 @@ public class RestaurantsFragment extends Fragment {
 
         View view = inflater.inflate(R.layout.frag_restaurants, container, false);
         ButterKnife.bind(this, view);
+        setHasOptionsMenu(true);
 
         setupRecyclerView();
 
@@ -73,5 +81,34 @@ public class RestaurantsFragment extends Fragment {
                 .content(R.string.frag_restaurants_progress_loading_list_restaurants)
                 .progress(true, 0)
                 .show();
+    }
+
+    @Override
+    public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
+
+        getActivity().getMenuInflater().inflate(R.menu.menu, menu);
+
+        SearchManager searchManager = (SearchManager) getActivity().getSystemService(Context.SEARCH_SERVICE);
+        MenuItem item = menu.findItem(R.id.menu_search);
+
+        SearchView searchView = (SearchView) item.getActionView();
+        searchView.setQueryHint(getString(R.string.frag_restaurants_hint_search));
+        searchView.setSearchableInfo(searchManager.getSearchableInfo(getActivity().getComponentName()));
+        //searchView.setOnQueryTextListener(this);
+
+        MenuItemCompat.setOnActionExpandListener(item, new MenuItemCompat.OnActionExpandListener() {
+            @Override
+            public boolean onMenuItemActionExpand(MenuItem item) {
+                return true;
+            }
+
+            @Override
+            public boolean onMenuItemActionCollapse(MenuItem item) {
+                //finish();
+                return true;
+            }
+        });
+
+        super.onCreateOptionsMenu(menu, inflater);
     }
 }
