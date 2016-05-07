@@ -6,7 +6,9 @@
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 
-	<title>Ristorante Con Fusion</title>    
+	<title>ReserveON</title> 
+
+    <link rel="shortcut icon" href="favicon.ico" type="image/x-icon">   
 
 	<!-- build:css styles/main.css -->
 	<link href="bower_components/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
@@ -23,7 +25,7 @@
 		<nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
 			<div class="container">
 				<div class="navbar-header">
-					<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar">
+					<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false">
 						<span class="sr-only"></span>
 						<span class="icon-bar"></span>
 						<span class="icon-bar"></span>
@@ -32,7 +34,7 @@
 				</div>
 				<div id="navbar" class="navbar-collapse collapse">
 
-					<ul class="nav navbar-left nav-pills">
+					<ul class="nav navbar-left nav-pills ">
 						<li>
 							<a href="#/"><span class="glyphicon glyphicon-home" aria-hidden="true"></span> Home</a>
 						</li>
@@ -45,9 +47,12 @@
 						<li>
 							<a href="#/contactus"><i class="fa fa-envelope-o"></i> Contato</a>
 						</li>
+						<li>
+							<a href="#/institute"><i class="fa fa-envelope-o"></i> Cadastro de Empresas</a>
+						</li>
 					</ul>
 
-					<ul class="nav navbar-right nav-pills">
+					<ul class="nav navbar-right nav-pills" ng-show="NotLogged">
 						<li role="presentation">
 							<a href="#/login">Entrar</a>
 						</li>
@@ -106,11 +111,13 @@
 	</footer>
 
 	<!-- build:js scripts/main.js -->
+	<script src="bower_components/jquery/dist/jquery.min.js"></script>
+	<script src="bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
 	<script src="bower_components/angular/angular.min.js"></script>
 	<script src="bower_components/angular-route/angular-route.js"></script>
 	<script src="app.modules.js"></script>
 	<script src="components/register/register-controller.js"></script>
-	<script src="components/login/login-controller.js"></script>
+    <script src="components/login/login-controller.js"></script>
 	<!-- endbuild -->
 
 </body>

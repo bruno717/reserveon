@@ -5,6 +5,7 @@ var app = angular.module('app', ['ngRoute']);
 app.controller('AppController', ['$scope', '$routeParams', function($scope, $routeParams){
 }]);
 
+
 app.config(function($routeProvider, $httpProvider){
 	$routeProvider
 		.when('/login', {
@@ -16,6 +17,11 @@ app.config(function($routeProvider, $httpProvider){
 			templateUrl: 'components/register/register.html', 
 			controller: 'RegisterController' ,
 			controllerAs: 'register' 
+		})
+		.when('/institute', {
+		    templateUrl: 'components/institute/institute.html',
+		    controller: 'InstituteController',
+		    controllerAs: 'institute'
 		})
 		.otherwise('/');
 
