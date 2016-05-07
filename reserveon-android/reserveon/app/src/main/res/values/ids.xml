@@ -4,6 +4,7 @@
     <!-- ids default app -->
     <item name="reserveon_toolbar" type="id"/>
     <item name="reserveon_recyclerview" type="id"/>
+    <item name="reserveon_container" type="id"/>
 
     <!-- Activity register new user -->
     <item name="activity_register_new_user_textinputlayout_name" type="id"/>

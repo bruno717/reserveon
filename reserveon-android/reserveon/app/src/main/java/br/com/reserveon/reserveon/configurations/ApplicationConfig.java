@@ -5,7 +5,7 @@ package br.com.reserveon.reserveon.configurations;
  */
 public class ApplicationConfig {
 
-    public static final String BASE_URL = "http://reserveon.azurewebsites.net/";
+    public static final String BASE_URL = "http://reserveonapi.azurewebsites.net/";
 
     public static final String BEARER_AUTH = "bearer";
 
