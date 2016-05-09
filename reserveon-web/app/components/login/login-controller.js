@@ -11,7 +11,7 @@ app.controller('LoginController',  ['$scope', function($scope) {
             request: function (config) {
                 var token = auth.getToken();
                 if (config.url.indexOf(API) === 0 && token) {
-                    config.headers.Authorization = 'Bearer ' + token;
+                    //config.headers.Authorization = 'Bearer ' + token;
                 }
 
                 return config;
@@ -127,7 +127,7 @@ app.controller('LoginController',  ['$scope', function($scope) {
         };
 
         self.getInstitute = function () {
-            return $http.get(API + '/institute/recents')
+            return $http.get(API + '/institute/recents');
         }
 
     };
@@ -169,8 +169,21 @@ app.controller('LoginController',  ['$scope', function($scope) {
     app.service('user', userService);
     app.service('auth', authService);
     app.constant('API', 'http://reserveonapi.azurewebsites.net');
-    app.config(function ($httpProvider) {
+    app.config(function ($httpProvider,$sceDelegateProvider) {
         $httpProvider.interceptors.push('authInterceptor');
+        $httpProvider.defaults.headers.common['Access-Control-Allow-Headers'] = '*';
+        $sceDelegateProvider.resourceUrlWhitelist([
+            'self',
+            'http://reserveonapi.azurewebsites.net/**/**/**',
+            'http://reserveonapi.azurewebsites.net/**/**',
+            'http://reserveonapi.azurewebsites.net/**',
+            'http://reserveonapi.azurewebsites.net',
+        ]);
+        $httpProvider.defaults.headers.common = {};
+        $httpProvider.defaults.headers.post = {};
+        $httpProvider.defaults.headers.put = {};
+        $httpProvider.defaults.headers.patch = {};
+        $httpProvider.defaults.headers.common.Authorization = 'Basic rkMYYE-VxosC3lz2LupkqsKVyKQAV1CP_SRUcJLSR2J4erGwjhywbp2-hamvtfPcrLAwX4O7CYkZLKvMnxNllTSE_FoZ4xHTcbw9kIG-jfPnxaxVjB13YM2BAs5p5dVu5L-rFgKxaVPTEKVo4X3KEhxOVWYudAzy-BAbNbba9Gi9zQ7yK86upEX4hp8O-5ew4RX9tOLRMPZsNQu5vKfQIYQZsP6-PMnGimwJxuOG8Y36BpeMfBc9tRvs5j8OE8aWf5_VPrX78LGRIJ1n-7vQ8ewfUWCxrcbF4QZU1XY6Bi8yowXue97ZkdRA1xa1VtO3SWht4pZVpY6cLWgm1HsDFM-wnYGE7CW9R-IzojF0E0dDR30uE0K2zaJUYeUx6UNrWeIdiIC9HCN3ovQ-_5XgmR57IyS70ocCP443Z1jBvpvnWTx14fTWtuq2qa3Trk8qg8eJYM2lYNy_tXa65nRXbQYeAN0sLLA6DPl-KYbADec';
     });
 
     app.controller('LoginController', MainCtrl);
