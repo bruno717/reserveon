@@ -17,7 +17,7 @@ import br.com.reserveon.reserveon.models.managers.ValidateFieldsManager;
 import br.com.reserveon.reserveon.rest.AuthTokenService;
 import br.com.reserveon.reserveon.rest.UserService;
 import br.com.reserveon.reserveon.utils.ConnectionUtils;
-import butterknife.Bind;
+import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 
@@ -26,13 +26,13 @@ import butterknife.OnClick;
  */
 public class RegisterNewUserActivity extends AppCompatActivity {
 
-    @Bind(R.id.activity_register_new_user_textinputlayout_name)
+    @BindView(R.id.activity_register_new_user_textinputlayout_name)
     TextInputLayout mInputName;
-    @Bind(R.id.activity_register_new_user_textinputlayout_email)
+    @BindView(R.id.activity_register_new_user_textinputlayout_email)
     TextInputLayout mInputEmail;
-    @Bind(R.id.activity_register_new_user_textinputlayout_password)
+    @BindView(R.id.activity_register_new_user_textinputlayout_password)
     TextInputLayout mInputPassword;
-    @Bind(R.id.activity_register_new_user_button_register)
+    @BindView(R.id.activity_register_new_user_button_register)
     Button mButtonRegister;
     private MaterialDialog mMaterialDialog;
 

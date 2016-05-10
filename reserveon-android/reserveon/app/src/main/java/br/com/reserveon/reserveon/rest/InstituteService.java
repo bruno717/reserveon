@@ -1,7 +1,5 @@
 package br.com.reserveon.reserveon.rest;
 
-import android.util.Log;
-
 import java.util.List;
 import java.util.Locale;
 
@@ -44,6 +42,35 @@ public class InstituteService {
                     callback.onSuccess(response.body());
                 } else {
                     callback.onError(response.errorBody() != null ? response.errorBody().toString() : "Error");
+                }
+            }
+
+            @Override
+            public void onFailure(Call<List<Institute>> call, Throwable t) {
+                callback.onError(t.getLocalizedMessage());
+            }
+        });
+    }
+
+    public void getInstitutesByName(String textFilter, final IServiceResponse<List<Institute>> callback) {
+
+        User user = new UserDbHelper().getUserAuth();
+
+        Retrofit retrofit = new Retrofit.Builder()
+                .addConverterFactory(JacksonConverterFactory.create())
+                .baseUrl(ApplicationConfig.BASE_URL)
+                .client(ClientTimeout.getClientTimeout())
+                .build();
+
+        IInstituteService service = retrofit.create(IInstituteService.class);
+
+        Call<List<Institute>> call = service.getInstitutesByName(String.format(Locale.US, "%s %s", user.getTokenType(), user.getAccessToken()), textFilter);
+
+        call.enqueue(new Callback<List<Institute>>() {
+            @Override
+            public void onResponse(Call<List<Institute>> call, Response<List<Institute>> response) {
+                if (response.code() == 200) {
+                    callback.onSuccess(response.body());
                 }
             }
 

@@ -1,11 +1,11 @@
 package br.com.reserveon.reserveon.fragments;
 
+import android.app.Activity;
 import android.app.SearchManager;
 import android.content.Context;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
-import android.support.v4.view.MenuItemCompat;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.SearchView;
@@ -15,6 +15,7 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.inputmethod.InputMethodManager;
 
 import com.afollestad.materialdialogs.MaterialDialog;
 
@@ -25,17 +26,20 @@ import br.com.reserveon.reserveon.R;
 import br.com.reserveon.reserveon.adapters.CardListRestaurantAdapter;
 import br.com.reserveon.reserveon.interfaces.IServiceResponse;
 import br.com.reserveon.reserveon.models.Institute;
+import br.com.reserveon.reserveon.models.managers.InstituteListManager;
 import br.com.reserveon.reserveon.rest.InstituteService;
-import butterknife.Bind;
+import butterknife.BindView;
 import butterknife.ButterKnife;
 
 /**
  * Created by Bruno on 22/04/2016.
  */
-public class RestaurantsFragment extends Fragment {
+public class RestaurantsFragment extends Fragment implements SearchView.OnQueryTextListener {
 
-    @Bind(R.id.reserveon_recyclerview)
+    @BindView(R.id.reserveon_recyclerview)
     RecyclerView mRecyclerView;
+
+    private CardListRestaurantAdapter mAdapter;
 
     @Nullable
     @Override
@@ -61,14 +65,17 @@ public class RestaurantsFragment extends Fragment {
         new InstituteService().getInstitutes(new IServiceResponse<List<Institute>>() {
             @Override
             public void onSuccess(List<Institute> data) {
+                InstituteListManager.institutes = data;
                 progress.dismiss();
-                mRecyclerView.setAdapter(new CardListRestaurantAdapter(data, getActivity()));
+                mAdapter = new CardListRestaurantAdapter(data, getActivity());
+                mRecyclerView.setAdapter(mAdapter);
             }
 
             @Override
             public void onError(String error) {
                 progress.dismiss();
-                mRecyclerView.setAdapter(new CardListRestaurantAdapter(new ArrayList<Institute>(), getActivity()));
+                mAdapter = new CardListRestaurantAdapter(new ArrayList<Institute>(), getActivity());
+                mRecyclerView.setAdapter(mAdapter);
             }
         });
     }
@@ -94,21 +101,42 @@ public class RestaurantsFragment extends Fragment {
         SearchView searchView = (SearchView) item.getActionView();
         searchView.setQueryHint(getString(R.string.frag_restaurants_hint_search));
         searchView.setSearchableInfo(searchManager.getSearchableInfo(getActivity().getComponentName()));
-        //searchView.setOnQueryTextListener(this);
+        searchView.setOnQueryTextListener(this);
 
-        MenuItemCompat.setOnActionExpandListener(item, new MenuItemCompat.OnActionExpandListener() {
+        super.onCreateOptionsMenu(menu, inflater);
+    }
+
+    @Override
+    public boolean onQueryTextSubmit(String query) {
+
+        //close keyboard
+        if (getView() != null)
+            ((InputMethodManager) getActivity().getSystemService(Activity.INPUT_METHOD_SERVICE)).hideSoftInputFromWindow(getView().getWindowToken(), 0);
+
+        new InstituteService().getInstitutesByName(query, new IServiceResponse<List<Institute>>() {
             @Override
-            public boolean onMenuItemActionExpand(MenuItem item) {
-                return true;
+            public void onSuccess(List<Institute> data) {
+                mAdapter.setInstitutes(data);
+                mAdapter.notifyDataSetChanged();
             }
 
             @Override
-            public boolean onMenuItemActionCollapse(MenuItem item) {
-                //finish();
-                return true;
+            public void onError(String error) {
+                mAdapter.setInstitutes(new ArrayList<Institute>());
+                mAdapter.notifyDataSetChanged();
             }
         });
 
-        super.onCreateOptionsMenu(menu, inflater);
+        return true;
+    }
+
+    @Override
+    public boolean onQueryTextChange(String newText) {
+
+        if (newText.length() == 0) {
+            mAdapter.setInstitutes(InstituteListManager.institutes);
+            mAdapter.notifyDataSetChanged();
+        }
+        return false;
     }
 }

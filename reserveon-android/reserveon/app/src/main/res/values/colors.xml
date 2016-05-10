@@ -1,13 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <color name="primary">#104b86</color>
-    <color name="primary_dark">#102486</color>
+    <color name="primary_dark">#0e4378</color>
     <color name="primary_transparent">#93145EA8</color>
     <color name="black">#000000</color>
     <color name="gray">#B7B7B7</color>
-    <color name="red">#340C0C</color>
+    <color name="red">#482424</color>
     <color name="white">#FFFFFF</color>
     <color name="background_transparent">#99000000</color>
+    <color name="background_transparent_dark">#DD000000</color>
     <color name="card_list_background_transparent">#40000000</color>
 
     <color name="simple_text">#727272</color>

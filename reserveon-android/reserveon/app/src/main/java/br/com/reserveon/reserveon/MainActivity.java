@@ -5,12 +5,12 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 
 import br.com.reserveon.reserveon.fragments.RestaurantsFragment;
-import butterknife.Bind;
+import butterknife.BindView;
 import butterknife.ButterKnife;
 
 public class MainActivity extends AppCompatActivity {
 
-    @Bind(R.id.reserveon_toolbar)
+    @BindView(R.id.reserveon_toolbar)
     Toolbar mToolBar;
 
     @Override

@@ -1,7 +1,6 @@
 package br.com.reserveon.reserveon.adapters;
 
 import android.content.Context;
-import android.net.Uri;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -15,7 +14,7 @@ import java.util.List;
 
 import br.com.reserveon.reserveon.R;
 import br.com.reserveon.reserveon.models.Institute;
-import butterknife.Bind;
+import butterknife.BindView;
 import butterknife.ButterKnife;
 
 /**
@@ -53,13 +52,17 @@ public class CardListRestaurantAdapter extends RecyclerView.Adapter<CardListRest
         return mInstitutes.size();
     }
 
+    public void setInstitutes(List<Institute> institutes) {
+        mInstitutes = institutes;
+    }
+
     public class ViewHolder extends RecyclerView.ViewHolder {
 
-        @Bind(R.id.card_list_restaurant_textview_name)
+        @BindView(R.id.card_list_restaurant_textview_name)
         TextView textViewName;
         /*@Bind(R.id.card_list_restaurant_textview_expedient)
         TextView textViewExpedient;*/
-        @Bind(R.id.card_list_restaurant_imageview_image)
+        @BindView(R.id.card_list_restaurant_imageview_image)
         ImageView imageViewImage;
 
         public ViewHolder(View itemView) {
