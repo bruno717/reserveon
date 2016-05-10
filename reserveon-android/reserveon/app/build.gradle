@@ -67,7 +67,7 @@ dependencies {
     compile 'com.github.satyan:sugar:1.5'
 
     //bind
-    compile 'com.jakewharton:butterknife:8.0.1'
+    compile 'com.jakewharton:butterknife:7.0.1'
 
     //calls rest, parse, json
     compile 'org.springframework.android:spring-android-rest-template:2.0.0.M1'

@@ -28,7 +28,7 @@ import br.com.reserveon.reserveon.interfaces.IServiceResponse;
 import br.com.reserveon.reserveon.models.Institute;
 import br.com.reserveon.reserveon.models.managers.InstituteListManager;
 import br.com.reserveon.reserveon.rest.InstituteService;
-import butterknife.BindView;
+import butterknife.Bind;
 import butterknife.ButterKnife;
 
 /**
@@ -36,7 +36,7 @@ import butterknife.ButterKnife;
  */
 public class RestaurantsFragment extends Fragment implements SearchView.OnQueryTextListener {
 
-    @BindView(R.id.reserveon_recyclerview)
+    @Bind(R.id.reserveon_recyclerview)
     RecyclerView mRecyclerView;
 
     private CardListRestaurantAdapter mAdapter;

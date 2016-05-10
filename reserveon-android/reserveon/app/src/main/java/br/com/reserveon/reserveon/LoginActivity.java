@@ -15,7 +15,7 @@ import br.com.reserveon.reserveon.models.managers.ValidateFieldsManager;
 import br.com.reserveon.reserveon.rest.AuthTokenService;
 import br.com.reserveon.reserveon.rest.UserService;
 import br.com.reserveon.reserveon.utils.ConnectionUtils;
-import butterknife.BindView;
+import butterknife.Bind;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 
@@ -24,9 +24,9 @@ import butterknife.OnClick;
  */
 public class LoginActivity extends AppCompatActivity {
 
-    @BindView(R.id.activity_login_textinputlayout_email)
+    @Bind(R.id.activity_login_textinputlayout_email)
     TextInputLayout mInputEmail;
-    @BindView(R.id.activity_login_textinputlayout_password)
+    @Bind(R.id.activity_login_textinputlayout_password)
     TextInputLayout mInputPassword;
     private MaterialDialog mMaterialDialog;
 

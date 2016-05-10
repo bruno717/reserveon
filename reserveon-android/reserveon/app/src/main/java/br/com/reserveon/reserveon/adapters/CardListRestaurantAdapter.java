@@ -14,7 +14,7 @@ import java.util.List;
 
 import br.com.reserveon.reserveon.R;
 import br.com.reserveon.reserveon.models.Institute;
-import butterknife.BindView;
+import butterknife.Bind;
 import butterknife.ButterKnife;
 
 /**
@@ -58,11 +58,11 @@ public class CardListRestaurantAdapter extends RecyclerView.Adapter<CardListRest
 
     public class ViewHolder extends RecyclerView.ViewHolder {
 
-        @BindView(R.id.card_list_restaurant_textview_name)
+        @Bind(R.id.card_list_restaurant_textview_name)
         TextView textViewName;
         /*@Bind(R.id.card_list_restaurant_textview_expedient)
         TextView textViewExpedient;*/
-        @BindView(R.id.card_list_restaurant_imageview_image)
+        @Bind(R.id.card_list_restaurant_imageview_image)
         ImageView imageViewImage;
 
         public ViewHolder(View itemView) {

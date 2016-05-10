@@ -4,13 +4,15 @@ import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 
+import com.mikepenz.materialdrawer.DrawerBuilder;
+
 import br.com.reserveon.reserveon.fragments.RestaurantsFragment;
-import butterknife.BindView;
+import butterknife.Bind;
 import butterknife.ButterKnife;
 
 public class MainActivity extends AppCompatActivity {
 
-    @BindView(R.id.reserveon_toolbar)
+    @Bind(R.id.reserveon_toolbar)
     Toolbar mToolBar;
 
     @Override
@@ -20,7 +22,12 @@ public class MainActivity extends AppCompatActivity {
         ButterKnife.bind(this);
 
         setupToolbar();
+        setupNavigationDrawer(savedInstanceState);
         showFragment();
+    }
+
+    private void setupNavigationDrawer(Bundle bundle) {
+        ///new DrawerBuilder()
     }
 
     private void showFragment() {
