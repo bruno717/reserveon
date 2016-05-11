@@ -1,7 +1,6 @@
 package br.com.reserveon.reserveon.adapters;
 
 import android.content.Context;
-import android.net.Uri;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -51,6 +50,10 @@ public class CardListRestaurantAdapter extends RecyclerView.Adapter<CardListRest
     @Override
     public int getItemCount() {
         return mInstitutes.size();
+    }
+
+    public void setInstitutes(List<Institute> institutes) {
+        mInstitutes = institutes;
     }
 
     public class ViewHolder extends RecyclerView.ViewHolder {
