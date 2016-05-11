@@ -116,44 +116,11 @@
 	<script src="bower_components/angular/angular.min.js"></script>
 	<script src="bower_components/angular-route/angular-route.js"></script>
 	<script src="app.modules.js"></script>
+	<script src="app.routes.js"></script>
 	<script src="components/register/register-controller.js"></script>
     <script src="components/login/login-controller.js"></script>
 	<!-- endbuild -->
 
-	<script type="text/javascript">
-
-	function teste (){
-        $.ajax({
-            url: 'http://reserveonapi.azurewebsites.net/institute/recents',
-            type: 'GET',
-            headers: {
-                'Authorization' : 'Bearer rkMYYE-VxosC3lz2LupkqsKVyKQAV1CP_SRUcJLSR2J4erGwjhywbp2-hamvtfPcrLAwX4O7CYkZLKvMnxNllTSE_FoZ4xHTcbw9kIG-jfPnxaxVjB13YM2BAs5p5dVu5L-rFgKxaVPTEKVo4X3KEhxOVWYudAzy-BAbNbba9Gi9zQ7yK86upEX4hp8O-5ew4RX9tOLRMPZsNQu5vKfQIYQZsP6-PMnGimwJxuOG8Y36BpeMfBc9tRvs5j8OE8aWf5_VPrX78LGRIJ1n-7vQ8ewfUWCxrcbF4QZU1XY6Bi8yowXue97ZkdRA1xa1VtO3SWht4pZVpY6cLWgm1HsDFM-wnYGE7CW9R-IzojF0E0dDR30uE0K2zaJUYeUx6UNrWeIdiIC9HCN3ovQ-_5XgmR57IyS70ocCP443Z1jBvpvnWTx14fTWtuq2qa3Trk8qg8eJYM2lYNy_tXa65nRXbQYeAN0sLLA6DPl-KYbADec'
-                //'Content-Type': 'text/plain'
-            }
-
-            /*type: "GET",
-            dataType: "json",
-            cache: false,
-            async: false,
-            contentType: "application/json; charset=utf-8",
-            url: 'http://reserveonapi.azurewebsites.net/institute/recents',
-            beforeSend: function (xhr) {
-                xhr.setRequestHeader("Authorization", 'Bearer  '+ localStorage['jwtToken']);
-            }*/
-
-        })
-        .done(function() {
-            console.log("success");
-        })
-        .fail(function() {
-            console.log("error");
-        })
-        .always(function() {
-            console.log("complete");
-        });
-		
-	}
-</script>
 </body>
 
 </html>

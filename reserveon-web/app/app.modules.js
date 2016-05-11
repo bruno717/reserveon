@@ -6,23 +6,22 @@ app.controller('AppController', ['$scope', '$routeParams', function($scope, $rou
 }]);
 
 
-app.config(function($routeProvider, $httpProvider){
-	$routeProvider
-		.when('/login', {
-			templateUrl: 'components/login/login.html', 
-			controller: 'LoginController',
-			controllerAs: 'login'
-		})
-		.when('/signup', {
-			templateUrl: 'components/register/register.html', 
-			controller: 'RegisterController' ,
-			controllerAs: 'register' 
-		})
-		.when('/institute', {
-		    templateUrl: 'components/institute/institute.html',
-		    controller: 'InstituteController',
-		    controllerAs: 'institute'
-		})
-		.otherwise('/');
 
-});
+app.directive('fileModel', ['$parse', function ($parse){
+
+	return {
+		restrict: 'A',
+		link: function (scope, element, attrs) {
+			var model = $parse(attrs.fileModel);
+			var modelSetter = model.assign;
+
+			element.bind('change', function (){
+				scope.$apply(function (){
+					modelSetter(scope,element[0].files[0]);
+				});
+			});
+
+		}
+	};
+
+}]);
