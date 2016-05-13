@@ -1,6 +1,5 @@
 package br.com.reserveon.reserveon.fragments;
 
-import android.app.Activity;
 import android.app.SearchManager;
 import android.content.Context;
 import android.os.Bundle;
@@ -15,7 +14,6 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
-import android.view.inputmethod.InputMethodManager;
 
 import com.afollestad.materialdialogs.MaterialDialog;
 
@@ -40,6 +38,7 @@ public class RestaurantsFragment extends Fragment implements SearchView.OnQueryT
     RecyclerView mRecyclerView;
 
     private CardListRestaurantAdapter mAdapter;
+    private SearchView mSearchView;
 
     @Nullable
     @Override
@@ -60,7 +59,7 @@ public class RestaurantsFragment extends Fragment implements SearchView.OnQueryT
         layoutManager.setOrientation(LinearLayoutManager.VERTICAL);
         mRecyclerView.setLayoutManager(layoutManager);
 
-        final MaterialDialog progress = showModalProgress();
+        final MaterialDialog progress = showModalProgress(R.string.frag_restaurants_progress_loading_list_restaurants);
 
         new InstituteService().getInstitutes(new IServiceResponse<List<Institute>>() {
             @Override
@@ -80,12 +79,12 @@ public class RestaurantsFragment extends Fragment implements SearchView.OnQueryT
         });
     }
 
-    private MaterialDialog showModalProgress() {
+    private MaterialDialog showModalProgress(Integer content) {
         return new MaterialDialog.Builder(getActivity())
                 .autoDismiss(false)
                 .cancelable(false)
                 .title(R.string.progress_dialog_title)
-                .content(R.string.frag_restaurants_progress_loading_list_restaurants)
+                .content(content)
                 .progress(true, 0)
                 .show();
     }
@@ -98,10 +97,10 @@ public class RestaurantsFragment extends Fragment implements SearchView.OnQueryT
         SearchManager searchManager = (SearchManager) getActivity().getSystemService(Context.SEARCH_SERVICE);
         MenuItem item = menu.findItem(R.id.menu_search);
 
-        SearchView searchView = (SearchView) item.getActionView();
-        searchView.setQueryHint(getString(R.string.frag_restaurants_hint_search));
-        searchView.setSearchableInfo(searchManager.getSearchableInfo(getActivity().getComponentName()));
-        searchView.setOnQueryTextListener(this);
+        mSearchView = (SearchView) item.getActionView();
+        mSearchView.setQueryHint(getString(R.string.frag_restaurants_hint_search));
+        mSearchView.setSearchableInfo(searchManager.getSearchableInfo(getActivity().getComponentName()));
+        mSearchView.setOnQueryTextListener(this);
 
         super.onCreateOptionsMenu(menu, inflater);
     }
@@ -109,24 +108,8 @@ public class RestaurantsFragment extends Fragment implements SearchView.OnQueryT
     @Override
     public boolean onQueryTextSubmit(String query) {
 
-        //close keyboard
-        if (getView() != null)
-            ((InputMethodManager) getActivity().getSystemService(Activity.INPUT_METHOD_SERVICE)).hideSoftInputFromWindow(getView().getWindowToken(), 0);
-
-        new InstituteService().getInstitutesByName(query, new IServiceResponse<List<Institute>>() {
-            @Override
-            public void onSuccess(List<Institute> data) {
-                mAdapter.setInstitutes(data);
-                mAdapter.notifyDataSetChanged();
-            }
-
-            @Override
-            public void onError(String error) {
-                mAdapter.setInstitutes(new ArrayList<Institute>());
-                mAdapter.notifyDataSetChanged();
-            }
-        });
-
+        mSearchView.clearFocus();
+        filterListRestaurants(query);
         return true;
     }
 
@@ -138,5 +121,28 @@ public class RestaurantsFragment extends Fragment implements SearchView.OnQueryT
             mAdapter.notifyDataSetChanged();
         }
         return false;
+    }
+
+    private void filterListRestaurants(String query) {
+
+        final MaterialDialog progress = showModalProgress(R.string.frag_restaurants_progress_loading_list_filter_restaurants);
+
+        new InstituteService().getInstitutesByName(query, new IServiceResponse<List<Institute>>() {
+            @Override
+            public void onSuccess(List<Institute> data) {
+                progress.dismiss();
+                mAdapter.setInstitutes(data);
+                mAdapter.notifyDataSetChanged();
+                mSearchView.clearFocus();
+            }
+
+            @Override
+            public void onError(String error) {
+                progress.dismiss();
+                mAdapter.setInstitutes(new ArrayList<Institute>());
+                mAdapter.notifyDataSetChanged();
+                mSearchView.clearFocus();
+            }
+        });
     }
 }

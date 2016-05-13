@@ -23,4 +23,7 @@
     <item name="card_list_restaurant_textview_expedient" type="id"/>
     <item name="card_list_restaurant_imageview_image" type="id"/>
 
+    <!-- Navigation Drawer -->
+    <item name="navigation_drawer_logout" type="id"/>
+
 </resources>

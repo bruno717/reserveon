@@ -36,6 +36,11 @@
 
     <!-- Fragment restaurants -->
     <string name="frag_restaurants_progress_loading_list_restaurants">Carregando restaurantes…</string>
+    <string name="frag_restaurants_progress_loading_list_filter_restaurants">Buscando…</string>
     <string name="frag_restaurants_hint_search">Buscar restaurantes</string>
+
+    <!-- Navigation Drawer -->
+    <string name="navigation_drawer_logout">Sair</string>
+
 
 </resources>

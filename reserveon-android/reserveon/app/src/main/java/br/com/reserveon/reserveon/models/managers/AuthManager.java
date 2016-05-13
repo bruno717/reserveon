@@ -18,5 +18,9 @@ public class AuthManager {
         return null;
     }
 
+    public static void logoutUser() {
+        User.deleteAll(User.class);
+    }
+
 
 }
