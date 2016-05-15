@@ -20,7 +20,7 @@
         android:id="@id/reserveon_toolbar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@color/primary"
+        android:background="@color/primary_transparent"
         android:elevation="4dp"
         android:minHeight="?attr/actionBarSize"
         app:popupTheme="@style/ThemeOverlay.AppCompat.Light" />
@@ -28,7 +28,6 @@
     <FrameLayout
         android:id="@id/reserveon_container"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_below="@id/reserveon_toolbar"/>
+        android:layout_height="match_parent" />
 
 </RelativeLayout>

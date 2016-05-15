@@ -28,14 +28,15 @@ public class LoginActivity extends AppCompatActivity {
     TextInputLayout mInputEmail;
     @Bind(R.id.activity_login_textinputlayout_password)
     TextInputLayout mInputPassword;
+
     private MaterialDialog mMaterialDialog;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_login);
+        View view = getLayoutInflater().inflate(R.layout.activity_login, null);
+        setContentView(view);
         ButterKnife.bind(this);
-
     }
 
     private void setupTextInputLayout() {

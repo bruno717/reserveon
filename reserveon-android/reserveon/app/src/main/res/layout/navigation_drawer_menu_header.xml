@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:reserveon="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="170dp"
     android:minHeight="170dp">
@@ -9,5 +10,36 @@
         android:layout_height="170dp"
         android:scaleType="centerCrop"
         android:src="@mipmap/background_header_menu" />
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/background_transparent" />
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:orientation="vertical"
+        android:padding="16dp">
+
+        <TextView
+            android:id="@id/navigation_drawer_header_user_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@color/white"
+            android:textStyle="bold"
+            reserveon:text="Bruno"
+            android:textSize="14sp"/>
+
+        <TextView
+            android:id="@id/navigation_drawer_header_user_email"
+            android:textSize="14sp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@color/white"
+            reserveon:text="bruno@email.com" />
+
+    </LinearLayout>
 
 </RelativeLayout>

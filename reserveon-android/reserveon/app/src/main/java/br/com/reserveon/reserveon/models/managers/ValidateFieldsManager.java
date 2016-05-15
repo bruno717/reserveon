@@ -7,10 +7,10 @@ public class ValidateFieldsManager {
 
     public static Boolean validatePassword(String password) {
 
-        boolean isCaracterUpper = false;
-        boolean isCaracterLower = false;
-        boolean isCaracterNumber = false;
-        boolean isCaracterSpecial = false;
+        boolean isCharacterUpper = false;
+        boolean isCharacterLower = false;
+        boolean isCharacterNumber = false;
+        boolean isCharacterSpecial = false;
         boolean isSizeMinDefault = false;
 
 
@@ -19,20 +19,20 @@ public class ValidateFieldsManager {
         }
 
         for (int i = 0; i < password.length(); i++) {
-            Character caractere = password.charAt(i);
+            Character character = password.charAt(i);
 
-            if (Character.isUpperCase(caractere)) {
-                isCaracterUpper = true;
-            } else if (Character.isLowerCase(caractere)) {
-                isCaracterLower = true;
-            } else if (caractere.toString().matches("[0-9]")) {
-                isCaracterNumber = true;
-            } else if (caractere.toString().matches("\\W")) {
-                isCaracterSpecial = true;
+            if (Character.isUpperCase(character)) {
+                isCharacterUpper = true;
+            } else if (Character.isLowerCase(character)) {
+                isCharacterLower = true;
+            } else if (character.toString().matches("[0-9]")) {
+                isCharacterNumber = true;
+            } else if (character.toString().matches("\\W")) {
+                isCharacterSpecial = true;
             }
         }
 
-        return isCaracterUpper && isCaracterLower && isCaracterNumber && isCaracterSpecial && isSizeMinDefault;
+        return isCharacterUpper && isCharacterLower && isCharacterNumber && isCharacterSpecial && isSizeMinDefault;
 
     }
 }

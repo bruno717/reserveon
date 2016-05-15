@@ -5,6 +5,7 @@
     <item name="reserveon_toolbar" type="id"/>
     <item name="reserveon_recyclerview" type="id"/>
     <item name="reserveon_container" type="id"/>
+    <item name="reserveon_background_image" type="id"/>
 
     <!-- Activity register new user -->
     <item name="activity_register_new_user_textinputlayout_name" type="id"/>
@@ -24,6 +25,8 @@
     <item name="card_list_restaurant_imageview_image" type="id"/>
 
     <!-- Navigation Drawer -->
+    <item name="navigation_drawer_header_user_name" type="id"/>
+    <item name="navigation_drawer_header_user_email" type="id"/>
     <item name="navigation_drawer_logout" type="id"/>
 
 </resources>
