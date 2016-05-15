@@ -4,19 +4,23 @@
     <div class="panel-body">
         <div class="form-group col-md-12">
             <label for="name">Nome</label>
-            <input type="text" class="form-control" ng-model="institute.name" id="name" />    
+            <input type="text" class="form-control" ng-model="institute.name" id="name">    
         </div>
         <div class="form-group col-md-12">
             <label for="address">Endereço</label>
-            <input type="text" class="form-control" ng-model="institute.address" id="address" />    
+            <input type="text" class="form-control" ng-model="institute.address" id="address">    
         </div>
         <div class="form-group col-md-12">
             <label for="register">Registro</label>
-            <input type="text" class="form-control" ng-model="institute.registerID" id="register" />    
+            <input type="text" class="form-control" ng-model="institute.registerID" id="register">    
+        </div>
+        <div class="form-group col-md-12">
+            <label for="image" class="sr-only">Caminho Imagem</label>
+            <input type="hidden" ng-model="institute.image" id="image">
         </div>
         <div class="form-group col-md-12">
             <label for="expedient">Expediente</label>
-            <input type="text" class="form-control" ng-model="institute.expedient" id="expedient" />  
+            <input type="text" class="form-control" ng-model="institute.expedient" id="expedient">  
         </div>
         <div class="form-group">
             <button type="button" class="btn btn-danger btn-md" ng-click="institute.insertInstitute()">Cadastrar nova empresa</button>
@@ -30,5 +34,3 @@
         </div>
     </div>
 </div>
-
-<input type="text" ng-model="institute.image" id="image">
