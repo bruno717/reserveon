@@ -2,20 +2,17 @@
 
 (function () {
 
-    function InstituteController(instituteService) {
+    function InstituteController(instituteService,$scope) {
         var self = this;
+        self.loading = false;
 
         function successRequest(res) {
-            var img = res.data ? res.data.img : null;
-            if(img) {
-            	console.log('Success ' + res.status + ' ' + res.statusText);
-            };
-            console.log('Teste Sucesso');
-        };
+            console.log('Success ' + res.status + ' ' + res.statusText);
+        }
         
         function errorRequest(res) {
             console.log('Error ' + res.status + ' ' + res.statusText);
-        };
+        }
 
         self.insertInstitute = function() {
             instituteService.insertInstitute(self.name, self.address, self.registerID, self.image, self.expedient)
@@ -23,8 +20,18 @@
         };
 
         self.getInstitute = function () {
+            self.loading = true;
             instituteService.getInstitute()
-            	.then(successRequest, errorRequest);
+            	.then(
+                    function (res){
+                        $scope.institutes = res.data;
+                        self.loading = false;
+                    }, 
+                    function (res) {
+                        self.loading = false;
+                        console.log('Error ' + res.status + ' ' + res.statusText);
+                    }
+                );
         };
 
         self.insertImageInstitute = function () {

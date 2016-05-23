@@ -19,18 +19,6 @@
   padding: 70px 30px;
   background-color: #eee;
 }
-.carousel {
-  background: #1a237e;
-}
-.carousel .item {
-  height: 300px;
-}
-.carousel .item img {
-  left: 0;
-  min-height: 300px;
-  position: absolute;
-  top: 0;
-}
 .navbar-inverse {
   background: #2164a8;
   color: #ffffff;
@@ -96,11 +84,6 @@ body {
 .affix {
   top: 100px;
 }
-#carouselButtons {
-  bottom: 0px;
-  position: absolute;
-  right: 0px;
-}
 
 #navbar {
   padding: 5px;
@@ -148,4 +131,7 @@ body {
 }
 .separator:after, .separator-ie span.after{
   background-image: linear-gradient(to left, transparent, gray);
+}
+.thumbnail a{
+  text-decoration: none;
 }

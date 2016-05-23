@@ -53,6 +53,10 @@ var app = angular.module('app', ['ngRoute']);
         $httpProvider.interceptors.push('authInterceptor');
     });
 
+    app.run(function (authService){
+        console.log(authService.isAuthed()); 
+    });
+
     app.factory('authInterceptor', authInterceptor);
 	
 	app.constant('API', 'http://reserveonapi.azurewebsites.net');

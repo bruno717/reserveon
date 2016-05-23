@@ -4,22 +4,34 @@
     
     function LoginController(loginService, authService) {
         var self = this;
+        self.loading = false;
 
         function successRequest(res) {
-            var token = res.data ? res.data.access_token : null;
-
-            if(token) {
-                console.log('Success ' + res.status + ' ' + res.statusText);
-            };
-        };
+            console.log('Success ' + res.status + ' ' + res.statusText);
+        }
         
         function errorRequest(res) {
             console.log('Error ' + res.status + ' ' + res.statusText);
-        };
+        }
 
         self.login = function () {
+            self.loading = true;
             loginService.login(self.username, self.password)
-                .then(successRequest, errorRequest)
+                .then(
+                    function (res){
+                        self.loading = false;
+                        var token = res.data ? res.data.access_token : null;
+                        if(token) {
+                            window.location.href = '/#';
+                            console.log('Success ' + res.status + ' ' + res.statusText);
+                        };
+                        
+                    },
+                    function (res) {
+                        self.loading = false;
+                        console.log('Error ' + res.status + ' ' + res.statusText);
+                    }
+                )
         }
 
         self.logout = function () {

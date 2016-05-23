@@ -4,18 +4,24 @@
 
     function RegisterController(registerService) {
         var self = this;
-
-        function successRequest(res) {
-            console.log('Success ' + res.status + ' ' + res.statusText);
-        }
-        
-        function errorRequest(res) {
-            console.log('Error ' + res.status + ' ' + res.statusText);
-        }
+        self.loading = false;
 
         self.register = function () {
+            self.loading = true;
             registerService.register(self.email, self.password, self.name)
-            	.then(successRequest, errorRequest);
+            	.then(
+                    function (res){
+                        self.loading = false;
+                        if(res.status == 200) {
+                            window.location.href = '/#/login';
+                            console.log('Success ' + res.status + ' ' + res.statusText);
+                        };
+                    },
+                    function (res) {
+                        self.loading = false;
+                        console.log('Error ' + res.status + ' ' + res.statusText);
+                    }
+                )
         };
     };
 
