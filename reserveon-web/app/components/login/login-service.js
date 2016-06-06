@@ -4,13 +4,12 @@
     
     function authService($window) {
         var self = this;
-
         self.saveToken = function (token) {
-            $window.localStorage['token'] = token;
+            $window.localStorage.setItem('token', token);
         };
 
         self.getToken = function () {
-            return $window.localStorage['token'];
+            return $window.localStorage.getItem('token');
         };
 
         self.isAuthed = function () {
@@ -25,11 +24,10 @@
         self.logout = function () {
             $window.localStorage.removeItem('token');
         };
-    };
+    }
 
     function loginService($http, API) {
         var self = this;
-
         self.login = function (username, password) {
             var data = {
                 grant_type: 'password',
@@ -39,8 +37,9 @@
             var config = {
                 transformRequest: function (obj) {
                     var str = [];
-                    for (var p in obj)
+                    for (var p in obj) {
                         str.push(encodeURIComponent(p) + "=" + encodeURIComponent(obj[p]));
+                    }
                     return str.join("&");
                 },
                 headers: {
@@ -50,7 +49,7 @@
             return $http.post(API + '/token', data, config);
         };
 
-    };
+    }
 
     app.service('loginService', loginService);
     app.service('authService', authService);

@@ -10,10 +10,10 @@
 
     <link rel="shortcut icon" href="favicon.ico" type="image/x-icon">   
 
-	<!-- build:css styles/main.css -->
 	<link href="bower_components/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
 	<link href="bower_components/bootstrap/dist/css/bootstrap-theme.min.css" rel="stylesheet">
 	<link href="bower_components/font-awesome/css/font-awesome.min.css" rel="stylesheet">
+	<!-- build:css styles/main.css -->
 	<link href="assets/styles/bootstrap-social.css" rel="stylesheet">
 	<link href="assets/styles/mystyles.css" rel="stylesheet">
 	<link href="assets/styles/cssload.css" rel="stylesheet">
@@ -52,12 +52,24 @@
 						</li>
 					</ul>
 
-					<ul class="nav navbar-right nav-pills" ng-show="isAuthed()">
+					<ul class="nav navbar-right nav-pills" ng-if="!isAuthed">
 						<li role="presentation">
 							<a href="#/login">Entrar</a>
 						</li>
 						<li role="presentation">
 							<a href="#/signup">Cadastrar</a>
+						</li>
+					</ul>
+					<ul class="nav navbar-right nav-pills" ng-if="isAuthed">
+						<li role="presentation">
+							<div class="btn-group">
+								<button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+									Olá, Visitante <span class="caret"></span>
+								</button>
+								<ul class="dropdown-menu">
+									<li><a ng-href="teste.html">Sair</a></li>
+								</ul>
+							</div>
 						</li>
 					</ul>
 
@@ -110,13 +122,15 @@
 		</div>
 	</footer>
 
-	<!-- build:js scripts/main.js -->
 	<script src="bower_components/jquery/dist/jquery.min.js"></script>
 	<script src="bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
 	<script src="bower_components/angular/angular.min.js"></script>
 	<script src="bower_components/angular-route/angular-route.js"></script>
-	<script src="app.modules.js"></script>
-	<script src="app.routes.js"></script>
+	
+	<!-- build:js scripts/main.js -->
+	<script src="assets/scripts/app.modules.js"></script>
+	<script src="assets/scripts/app.routes.js"></script>
+	<script src="assets/scripts/app.directives.js"></script>
 	<script src="components/register/register-controller.js"></script>
 	<script src="components/register/register-service.js"></script>
     <script src="components/login/login-controller.js"></script>

@@ -38,7 +38,7 @@
             instituteService.insertImageInstitute(self.img)
             	.then(successRequest, errorRequest);
         };
-    };
+    }
 
     app.controller('InstituteController', InstituteController);
 

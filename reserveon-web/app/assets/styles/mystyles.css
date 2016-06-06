@@ -19,6 +19,9 @@
   padding: 70px 30px;
   background-color: #eee;
 }
+.message-error {
+    font-size: 14px !important;
+}
 .navbar-inverse {
   background: #2164a8;
   color: #ffffff;

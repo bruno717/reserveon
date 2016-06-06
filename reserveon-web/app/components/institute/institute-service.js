@@ -4,7 +4,6 @@
 
     function instituteService($http, API) {
         var self = this;
-
         self.insertInstitute = function (name, address, register, image, expedient) {
             var data = {
                 name: name, 
@@ -16,8 +15,9 @@
             var config = {
                 transformRequest: function (obj) {
                     var str = [];
-                    for (var p in obj)
+                    for (var p in obj) {
                         str.push(encodeURIComponent(p) + "=" + encodeURIComponent(obj[p]));
+                    }
                     return str.join("&");
                 },
                 headers: {
@@ -29,7 +29,7 @@
 
         self.getInstitute = function () {
             return $http.get(API + '/institute/recents');
-        }
+        };
 
         self.insertImageInstitute = function (file) {
             var data = new FormData();
@@ -45,7 +45,7 @@
 
             return $http.post(API + '/files/upload', data, config);
         };
-    };
+    }
 
     app.service('instituteService', instituteService);
 

@@ -4,7 +4,6 @@
 
     function registerService($http, API) {
         var self = this;
-
         self.register = function (email, password, name) {
             var data = {
                 email: email,
@@ -16,8 +15,9 @@
             var config = {
                 transformRequest: function (obj) {
                     var str = [];
-                    for (var p in obj)
+                    for (var p in obj) {
                         str.push(encodeURIComponent(p) + "=" + encodeURIComponent(obj[p]));
+                    }
                     return str.join("&");
                 },
                 headers: {
@@ -27,7 +27,7 @@
             
             return $http.post(API + '/users', data, config);
         };
-    };
+    }
 
     app.service('registerService', registerService);
 
