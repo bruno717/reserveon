@@ -1,4 +1,29 @@
-<script type="text/javascript">
-	localStorage.removeItem('token');
-	window.location.href = '/#';
-</script>
+<div class="demo">
+	<h1>CSS “Always on the bottom” Footer</h1>
+
+	<p>"Neque porro quisquam est qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit..."
+		"There is no one who loves pain itself, who seeks after it and wants to have it, simply because it is pain..."
+
+		Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam dapibus nisi a est molestie facilisis. Vestibulum laoreet eu eros eget cursus. Curabitur ullamcorper porttitor mollis. Morbi ultricies, quam sed vehicula vestibulum, risus nisi scelerisque mauris, id varius diam velit sit amet velit. Fusce tempus diam lectus, at ornare lacus cursus et. Cras a sagittis neque, eget semper odio. Ut in euismod mauris, in fringilla leo.
+
+		Phasellus gravida enim aliquet congue venenatis. Nulla dapibus, dui eu bibendum suscipit, risus nisl congue lorem, in volutpat nulla lectus at nunc. Nulla dapibus rhoncus dui vel bibendum. Pellentesque fringilla risus elit, vel tempus leo feugiat sed. Fusce mollis mi volutpat ipsum ultrices scelerisque. Integer sagittis pulvinar nunc ac pharetra. Ut semper finibus est. Nulla commodo neque id magna mollis, ac auctor dui congue. Suspendisse sit amet enim et diam iaculis auctor id nec metus. Sed ultrices finibus risus non eleifend.
+
+		Praesent in nibh metus. Nullam eu nunc molestie, feugiat lectus quis, ornare enim. Pellentesque bibendum ullamcorper dolor a placerat. Pellentesque non massa consectetur, mattis risus iaculis, cursus tortor. Curabitur id porttitor urna, ut accumsan nunc. Mauris finibus convallis fringilla. Nam ac nisi eleifend libero vestibulum laoreet nec nec dolor. Maecenas condimentum lacus justo. Donec diam tellus, elementum et cursus non, convallis sed purus. Nunc in risus imperdiet, fringilla nisl a, bibendum nunc. Etiam nisl risus, mollis et neque id, iaculis blandit urna. Phasellus sollicitudin mollis ipsum id ornare. Donec accumsan vulputate faucibus. Vestibulum congue, quam eu aliquam facilisis, orci mi laoreet mi, non cursus tortor odio placerat risus.
+
+		In hac habitasse platea dictumst. Etiam quis est ullamcorper, venenatis est in, lobortis lacus. Cras rutrum nibh sed dolor fringilla maximus. Etiam a nisl ac nisi scelerisque sagittis id sit amet est. Aenean ultricies magna eros, efficitur tempus libero pulvinar vitae. Aenean at lacinia elit, ultrices fermentum tortor. Donec dictum id est in varius. Sed mattis mattis sapien ac ullamcorper. Sed ullamcorper augue sed nisl rhoncus dictum. Nam diam ligula, lobortis sit amet fringilla ac, sollicitudin a massa. Vestibulum vel risus quis nulla tristique sagittis. Vestibulum at aliquet risus, sed tincidunt dolor.
+
+		Phasellus gravida enim aliquet congue venenatis. Nulla dapibus, dui eu bibendum suscipit, risus nisl congue lorem, in volutpat nulla lectus at nunc. Nulla dapibus rhoncus dui vel bibendum. Pellentesque fringilla risus elit, vel tempus leo feugiat sed. Fusce mollis mi volutpat ipsum ultrices scelerisque. Integer sagittis pulvinar nunc ac pharetra. Ut semper finibus est. Nulla commodo neque id magna mollis, ac auctor dui congue. Suspendisse sit amet enim et diam iaculis auctor id nec metus. Sed ultrices finibus risus non eleifend.
+
+		Praesent in nibh metus. Nullam eu nunc molestie, feugiat lectus quis, ornare enim. Pellentesque bibendum ullamcorper dolor a placerat. Pellentesque non massa consectetur, mattis risus iaculis, cursus tortor. Curabitur id porttitor urna, ut accumsan nunc. Mauris finibus convallis fringilla. Nam ac nisi eleifend libero vestibulum laoreet nec nec dolor. Maecenas condimentum lacus justo. Donec diam tellus, elementum et cursus non, convallis sed purus. Nunc in risus imperdiet, fringilla nisl a, bibendum nunc. Etiam nisl risus, mollis et neque id, iaculis blandit urna. Phasellus sollicitudin mollis ipsum id ornare. Donec accumsan vulputate faucibus. Vestibulum congue, quam eu aliquam facilisis, orci mi laoreet mi, non cursus tortor odio placerat risus.
+
+		In hac habitasse platea dictumst. Etiam quis est ullamcorper, venenatis est in, lobortis lacus. Cras rutrum nibh sed dolor fringilla maximus. Etiam a nisl ac nisi scelerisque sagittis id sit amet est. Aenean ultricies magna eros, efficitur tempus libero pulvinar vitae. Aenean at lacinia elit, ultrices fermentum tortor. Donec dictum id est in varius. Sed mattis mattis sapien ac ullamcorper. Sed ullamcorper augue sed nisl rhoncus dictum. Nam diam ligula, lobortis sit amet fringilla ac, sollicitudin a massa. Vestibulum vel risus quis nulla tristique sagittis. Vestibulum at aliquet risus, sed tincidunt dolor.
+
+		Nulla volutpat finibus congue. Nullam est mi, luctus eu commodo id, pretium a est. Curabitur aliquam pellentesque vestibulum. Sed mollis tristique risus. Integer varius rhoncus rhoncus. Maecenas imperdiet mi sed vehicula finibus. Morbi vitae faucibus nibh, ac mattis nibh.I often find myself designing a website where the footer must rest at the bottom of the page, even if the content above it is too short to push it to the bottom of the viewport naturally.</p>
+
+		<p>However, if the content is taller than the user’s viewport, then the footer should disappear from view as it would normally, resting at the bottom of the page (not fixed to the viewport).</p>
+
+		<p>If you know the height of the footer, then you should set it explicitly, and set the bottom padding of the footer’s parent element to be the same value (or larger if you want some spacing).</p>
+
+		<p>This is to prevent the footer from overlapping the content above it, since it is being removed from the document flow with <code>position: absolute;</code>.</p>
+	</div>
+</div>

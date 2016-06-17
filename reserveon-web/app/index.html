@@ -77,14 +77,16 @@
 			</div>
 		</nav>         
 	</header>
-		
-	<div class="jumbotron">
-
-	<ng-view></ng-view>
 	
+	<div class="container">
+
+		<ng-view></ng-view>
+	
+<!-- 		<div ng-include="'teste.html'"></div>
+ -->
 	</div>
 
-	<footer class="row-footer">
+	<footer>
 		<div class="container">
 			<div class="row">             
 				<div class="col-xs-5 col-xs-offset-1 col-sm-2 col-sm-offset-1">
@@ -102,7 +104,7 @@
 						Rua A, 111 - São Paulo - SP<br>
 						<i class="fa fa-phone"></i> +55 11 1234 5678<br>
 						<i class="fa fa-envelope"></i><a href="mailto:lucas.silva@reserveon.com.br"> lucas.silva@reserveon.com.br</a>
-					<address>
+					</address>
 					<p style="padding:10px;"></p>
 					<p align=center>© Copyright 2016 ReserveON</p>
 				</div>
@@ -121,7 +123,6 @@
 			</div>
 		</div>
 	</footer>
-
 	<script src="bower_components/jquery/dist/jquery.min.js"></script>
 	<script src="bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
 	<script src="bower_components/angular/angular.min.js"></script>
